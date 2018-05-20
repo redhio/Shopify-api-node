@@ -21,7 +21,7 @@ const baseChild = {
   count(parentId, params) {
     const key = 'count';
     const url = this.buildUrl(parentId, key, params);
-    return this.shopify.request(url, 'GET', key);
+    return this.redhio.request(url, 'GET', key);
   },
 
   /**
@@ -34,7 +34,7 @@ const baseChild = {
    */
   create(parentId, params) {
     const url = this.buildUrl(parentId);
-    return this.shopify.request(url, 'POST', this.key, params);
+    return this.redhio.request(url, 'POST', this.key, params);
   },
 
   /**
@@ -48,7 +48,7 @@ const baseChild = {
    */
   delete(parentId, id, params) {
     const url = this.buildUrl(parentId, id, params);
-    return this.shopify.request(url, 'DELETE');
+    return this.redhio.request(url, 'DELETE');
   },
 
   /**
@@ -62,7 +62,7 @@ const baseChild = {
    */
   get(parentId, id, params) {
     const url = this.buildUrl(parentId, id, params);
-    return this.shopify.request(url, 'GET', this.key);
+    return this.redhio.request(url, 'GET', this.key);
   },
 
   /**
@@ -75,7 +75,7 @@ const baseChild = {
    */
   list(parentId, params) {
     const url = this.buildUrl(parentId, undefined, params);
-    return this.shopify.request(url, 'GET', this.name);
+    return this.redhio.request(url, 'GET', this.name);
   },
 
   /**
@@ -89,7 +89,7 @@ const baseChild = {
    */
   update(parentId, id, params) {
     const url = this.buildUrl(parentId, id);
-    return this.shopify.request(url, 'PUT', this.key, params);
+    return this.redhio.request(url, 'PUT', this.key, params);
   },
 
   /**
@@ -112,7 +112,7 @@ const baseChild = {
 
     if (query) path += '?' + qs.stringify(query, { arrayFormat: 'brackets' });
 
-    return assign({ path }, this.redh.io.baseUrl);
+    return assign({ path }, this.redhio.baseUrl);
   }
 };
 
