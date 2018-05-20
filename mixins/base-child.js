@@ -112,7 +112,7 @@ const baseChild = {
 
     if (query) path += '?' + qs.stringify(query, { arrayFormat: 'brackets' });
 
-    return assign({ path }, this.shopify.baseUrl);
+    return assign({ path }, this.redh.io.baseUrl);
   }
 };
 
