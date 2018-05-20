@@ -104,7 +104,7 @@ const base = {
 
     if (query) path += '?' + qs.stringify(query, { arrayFormat: 'brackets' });
 
-    return assign({ path }, this.shopify.baseUrl);
+    return assign({ path }, this.redhio.baseUrl);
   }
 };
 
