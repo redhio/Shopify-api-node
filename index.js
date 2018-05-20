@@ -13,7 +13,7 @@ const fs = require('fs');
 const pkg = require('./package');
 
 /**
- * Creates a Shopify instance.
+ * Creates a Redhio instance.
  *
  * @param {Object} options Configuration options
  * @param {String} options.shopName The name of the shop
@@ -25,8 +25,8 @@ const pkg = require('./package');
  * @constructor
  * @public
  */
-function Shopify(options) {
-  if (!(this instanceof Shopify)) return new Shopify(options);
+function Redhio(options) {
+  if (!(this instanceof Redhio)) return new Redhio(options);
   if (
     !options ||
     !options.shopName ||
@@ -50,8 +50,8 @@ function Shopify(options) {
 
   this.baseUrl = {
     auth: !options.accessToken && `${options.apiKey}:${options.password}`,
-    hostname: !options.shopName.endsWith('.myshopify.com')
-      ? `${options.shopName}.myshopify.com`
+    hostname: !options.shopName.endsWith('.myredh.io')
+      ? `${options.shopName}.redh.io`
       : options.shopName,
     protocol: 'https:'
   };
@@ -66,12 +66,12 @@ function Shopify(options) {
   }
 }
 
-Object.setPrototypeOf(Shopify.prototype, EventEmitter.prototype);
+Object.setPrototypeOf(Redhio.prototype, EventEmitter.prototype);
 
 /**
  * Updates API call limits.
  *
- * @param {String} header X-Shopify-Shop-Api-Call-Limit header
+ * @param {String} header X-Redhio-Shop-Api-Call-Limit header
  * @private
  */
 Shopify.prototype.updateLimits = function updateLimits(header) {
@@ -88,7 +88,7 @@ Shopify.prototype.updateLimits = function updateLimits(header) {
 };
 
 /**
- * Sends a request to a Shopify API endpoint.
+ * Sends a request to a Redhio API endpoint.
  *
  * @param {Object} url URL object
  * @param {String} method HTTP method
@@ -97,7 +97,7 @@ Shopify.prototype.updateLimits = function updateLimits(header) {
  * @return {Promise}
  * @private
  */
-Shopify.prototype.request = function request(url, method, key, params) {
+Redhio.prototype.request = function request(url, method, key, params) {
   const options = assign({
     headers: { 'User-Agent': `${pkg.name}/${pkg.version}` },
     timeout: this.options.timeout,
@@ -107,7 +107,7 @@ Shopify.prototype.request = function request(url, method, key, params) {
   }, url);
 
   if (this.options.accessToken) {
-    options.headers['X-Shopify-Access-Token'] = this.options.accessToken;
+    options.headers['X-Redhio-Access-Token'] = this.options.accessToken;
   }
 
   if (params) {
@@ -120,13 +120,13 @@ Shopify.prototype.request = function request(url, method, key, params) {
   return got(options).then(res => {
     const body = res.body;
 
-    this.updateLimits(res.headers['x-shopify-shop-api-call-limit']);
+    this.updateLimits(res.headers['x-redhio-shop-api-call-limit']);
 
     if (key) return body[key];
     return body || {};
   }, err => {
     this.updateLimits(
-      err.response && err.response.headers['x-shopify-shop-api-call-limit']
+      err.response && err.response.headers['x-redhio-shop-api-call-limit']
     );
 
     return Promise.reject(err);
@@ -139,7 +139,7 @@ Shopify.prototype.request = function request(url, method, key, params) {
 fs.readdirSync(path.join(__dirname, 'resources')).forEach(name => {
   const prop = camelCase(name.slice(0, -3));
 
-  Object.defineProperty(Shopify.prototype, prop, {
+  Object.defineProperty(Redhio.prototype, prop, {
     get: function get() {
       const resource = require(`./resources/${name}`);
 
@@ -153,4 +153,4 @@ fs.readdirSync(path.join(__dirname, 'resources')).forEach(name => {
   });
 });
 
-module.exports = Shopify;
+module.exports = Redhio;
