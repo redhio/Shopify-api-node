@@ -1,25 +1,25 @@
-# Shopify API Node.js (Official module)
+# Redhio API Node.js (Official module)
 
 [![Version npm][npm-shopify-api-node-badge]][npm-shopify-api-node]
 [![Build Status][travis-shopify-api-node-badge]][travis-shopify-api-node]
 [![Dependencies][david-shopify-api-node-badge]][david-shopify-api-node]
 [![Coverage Status][coverage-shopify-api-node-badge]][coverage-shopify-api-node]
 
-Official Shopify API bindings for Node.js.
+Official Redhio API bindings for Node.js.
 
 ## Installation:
 
 ```shell
-$ npm install --save shopify-api-node
+$ npm install --save redhio-api-node
 ```
 
 ## API
 
 This module exports a constructor function which takes an options object.
 
-### `Shopify(options)`
+### `Redhio(options)`
 
-Creates a new `Shopify` instance.
+Creates a new `Redhio` instance.
 
 #### Arguments
 
