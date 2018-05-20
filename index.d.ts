@@ -1,6 +1,7 @@
-// Type definitions for shopify-api-node 2.10.0
-// Project: shopify-api-node
+// Type definitions for redhio-api-node 2.10.0
+// Project: redhio-api-node
 // Definitions by: Rich Buggy <rich@buggy.id.au>
+// updated by: redhIO <info@redh.io>
 
 /*~ This is the module template file for class modules.
  *~ You should rename it to index.d.ts and place it in a folder with the same name as the module.
@@ -19,108 +20,108 @@
 /*~ This declaration specifies that the class constructor function
  *~ is the exported object from the file
  */
-export = Shopify;
+export = Redhio;
 
 /*~ Write your module's methods and properties in this class */
 type onCallLimitsFn = (limits: Shopify.ICallLimits) => void;
 
-declare class Shopify {
-    constructor(config: Shopify.IPublicShopifyConfig | Shopify.IPrivateShopifyConfig);
-    callLimits: Shopify.ICallLimits;
+declare class Redhio {
+    constructor(config: Redhio.IPublicRedhioConfig | Shopify.IPrivateRedhioConfig);
+    callLimits: Redhio.ICallLimits;
     accessScope: {
-        list: () => Promise<Shopify.IAccessScope[]>;
+        list: () => Promise<Redhio.IAccessScope[]>;
     };
     apiPermission: {
         delete: () => Promise<void>;
     };
     // abandonedCheckouts
     applicationCharge: {
-        activate: (id: number, params?: any) => Promise<Shopify.IApplicationCharge>;
-        create: (params: Shopify.ICreateApplicationCharge) => Promise<Shopify.IApplicationCharge>;
-        get: (id: number, params?: any) => Promise<Shopify.IApplicationCharge>;
-        list: (params?: any) => Promise<Shopify.IApplicationCharge[]>;
+        activate: (id: number, params?: any) => Promise<Redhio.IApplicationCharge>;
+        create: (params: Redhio.ICreateApplicationCharge) => Promise<Redhio.IApplicationCharge>;
+        get: (id: number, params?: any) => Promise<Redhio.IApplicationCharge>;
+        list: (params?: any) => Promise<Redhio.IApplicationCharge[]>;
     };
     applicationCredit: {
-        create: (params: Shopify.ICreateApplicationCredit) => Promise<Shopify.IApplicationCredit>;
-        get: (id: number, params?: any) => Promise<Shopify.IApplicationCredit>;
-        list: (params?: any) => Promise<Shopify.IApplicationCredit[]>;
+        create: (params: Redhio.ICreateApplicationCredit) => Promise<Redhio.IApplicationCredit>;
+        get: (id: number, params?: any) => Promise<Redhio.IApplicationCredit>;
+        list: (params?: any) => Promise<Redhio.IApplicationCredit[]>;
     };
     article: {
         authors: () => Promise<string[]>;
         count: (blogId: number, params?: any) => Promise<number>;
-        create: (blogId: number, params: Shopify.ICreateArticle) => Promise<Shopify.IArticle>;
+        create: (blogId: number, params: Redhio.ICreateArticle) => Promise<Redhio.IArticle>;
         delete: (blogId: number, id: number) => Promise<void>;
-        get: (blogId: number, id: number, params?: any) => Promise<Shopify.IArticle>;
-        list: (blogId: number, params?: any) => Promise<Shopify.IArticle[]>;
+        get: (blogId: number, id: number, params?: any) => Promise<Redhio.IArticle>;
+        list: (blogId: number, params?: any) => Promise<Redhio.IArticle[]>;
         tags: (blogId?: number, params?: any) => Promise<string[]>;
-        update: (blogId: number, id: number, params: Shopify.IUpdateArticle) => Promise<Shopify.IArticle>;
+        update: (blogId: number, id: number, params: Redhio.IUpdateArticle) => Promise<Redhio.IArticle>;
     };
     asset: {
-        create: (themeId: number, params: any) => Promise<Shopify.IAsset>;
+        create: (themeId: number, params: any) => Promise<Redhio.IAsset>;
         delete: (themeId: number, params: any) => Promise<void>;
-        get: (themeId: number, params?: any) => Promise<Shopify.IAsset>;
-        list: (themeId: number, params?: any) => Promise<Shopify.IAsset[]>;
-        update: (themeId: number, params: Shopify.IUpdateArticle) => Promise<Shopify.IAsset>;
+        get: (themeId: number, params?: any) => Promise<Redhio.IAsset>;
+        list: (themeId: number, params?: any) => Promise<Redhio.IAsset[]>;
+        update: (themeId: number, params: Redhio.IUpdateArticle) => Promise<Redhio.IAsset>;
     };
     blog: {
         count: () => Promise<number>;
-        create: (params: Shopify.ICreateBlog) => Promise<Shopify.IBlog>;
+        create: (params: Redhio.ICreateBlog) => Promise<Redhio.IBlog>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IBlog>;
-        list: (params?: any) => Promise<Shopify.IBlog[]>;
-        update: (id: number, params: any) => Promise<Shopify.IBlog>;
+        get: (id: number, params?: any) => Promise<Redhio.IBlog>;
+        list: (params?: any) => Promise<Redhio.IBlog[]>;
+        update: (id: number, params: any) => Promise<Redhio.IBlog>;
     };
     carrierService: {
-        create: (params: Shopify.ICreateCarrierService) => Promise<Shopify.ICarrierService>;
+        create: (params: Shopify.ICreateCarrierService) => Promise<Redhio.ICarrierService>;
         delete: (id: number) => Promise<void>;
-        get: (id: number) => Promise<Shopify.ICarrierService>;
-        list: () => Promise<Shopify.ICarrierService[]>;
-        update: (id: number, params: Shopify.IUpdateCarrierService) => Promise<Shopify.ICarrierService>;
+        get: (id: number) => Promise<Redhio.ICarrierService>;
+        list: () => Promise<Redhio.ICarrierService[]>;
+        update: (id: number, params: Redhio.IUpdateCarrierService) => Promise<Redhio.ICarrierService>;
     };
     checkout: {
         complete: (token: string) => Promise<any>;
         count: (params?: any) => Promise<number>;
-        create: (params?: any) => Promise<Shopify.ICheckout>;
-        get: (token: string) => Promise<Shopify.ICheckout>;
-        list: (params?: any) => Promise<Shopify.ICheckout[]>;
+        create: (params?: any) => Promise<Redhio.ICheckout>;
+        get: (token: string) => Promise<Redhio.ICheckout>;
+        list: (params?: any) => Promise<Redhio.ICheckout[]>;
         shippingRates: (token: string) => Promise<any>;
-        update: (token: any, params: any) => Promise<Shopify.ICheckout>;
+        update: (token: any, params: any) => Promise<Redhio.ICheckout>;
     };
     collect: {
         count: (params?: any) => Promise<number>;
-        create: (params: Shopify.ICreateCollect) => Promise<Shopify.ICollect>;
+        create: (params: Redhio.ICreateCollect) => Promise<Redhio.ICollect>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.ICollect>;
-        list: (params?: any) => Promise<Shopify.ICollect[]>;
+        get: (id: number, params?: any) => Promise<Redhio.ICollect>;
+        list: (params?: any) => Promise<Redhio.ICollect[]>;
     };
     collectionListing: {
-        get: (id: number, params?: any) => Promise<Shopify.ICollectionListing>;
-        list: (params?: any) => Promise<Shopify.ICollectionListing[]>;
+        get: (id: number, params?: any) => Promise<Redhio.ICollectionListing>;
+        list: (params?: any) => Promise<Redhio.ICollectionListing[]>;
         productIds: (id: number) => Promise<any>;
     };
     comment: {
-        approve: (id: number) => Promise<Shopify.IComment>;
+        approve: (id: number) => Promise<Redhio.IComment>;
         count: (params?: any) => Promise<number>;
-        create: (params: Shopify.ICreateComment) => Promise<Shopify.IComment>;
+        create: (params: Redhio.ICreateComment) => Promise<Redhio.IComment>;
         get: (id: number, params?: any) => Promise<Shopify.IComment>;
-        list: (params?: any) => Promise<Shopify.IComment[]>;
-        notSpam: (id: number) => Promise<Shopify.IComment>;
-        remove: (id: number) => Promise<Shopify.IComment>;
-        restore: (id: number) => Promise<Shopify.IComment>;
-        spam: (id: number) => Promise<Shopify.IComment>;
-        update: (id: number, params: Shopify.IUpdateComment) => Promise<Shopify.IComment>;
+        list: (params?: any) => Promise<Redhio.IComment[]>;
+        notSpam: (id: number) => Promise<Redhio.IComment>;
+        remove: (id: number) => Promise<Redhio.IComment>;
+        restore: (id: number) => Promise<Redhio.IComment>;
+        spam: (id: number) => Promise<Redhio.IComment>;
+        update: (id: number, params: Redhio.IUpdateComment) => Promise<Redhio.IComment>;
     };
     country: {
         count: () => Promise<number>;
-        create: (params: Shopify.ICreateCountry) => Promise<Shopify.ICountry>;
+        create: (params: Redhio.ICreateCountry) => Promise<Redhio.ICountry>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.ICountry>;
-        list: (params?: any) => Promise<Shopify.ICountry[]>;
-        update: (id: number, params: Shopify.IUpdateCountry) => Promise<Shopify.ICountry>;
+        get: (id: number, params?: any) => Promise<Redhio.ICountry>;
+        list: (params?: any) => Promise<Redhio.ICountry[]>;
+        update: (id: number, params: Redhio.IUpdateCountry) => Promise<Redhio.ICountry>;
     };
     customCollection: {
         count: (params?: any) => Promise<number>;
-        create: (params: any) => Promise<Shopify.ICustomCollection>;
+        create: (params: any) => Promise<Redhio.ICustomCollection>;
         delete: (id: number) => Promise<void>;
         get: (id: number, params?: any) => Promise<Shopify.ICustomCollection>;
         list: (params?: any) => Promise<Shopify.ICustomCollection[]>;
