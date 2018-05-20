@@ -20,7 +20,7 @@ const base = {
   count(params) {
     const key = 'count';
     const url = this.buildUrl(key, params);
-    return this.shopify.request(url, 'GET', key);
+    return this.redhio.request(url, 'GET', key);
   },
 
   /**
@@ -32,7 +32,7 @@ const base = {
    */
   create(params) {
     const url = this.buildUrl();
-    return this.shopify.request(url, 'POST', this.key, params);
+    return this.redhio.request(url, 'POST', this.key, params);
   },
 
   /**
@@ -44,7 +44,7 @@ const base = {
    */
   delete(id) {
     const url = this.buildUrl(id);
-    return this.shopify.request(url, 'DELETE');
+    return this.redhio.request(url, 'DELETE');
   },
 
   /**
@@ -57,7 +57,7 @@ const base = {
    */
   get(id, params) {
     const url = this.buildUrl(id, params);
-    return this.shopify.request(url, 'GET', this.key);
+    return this.redhio.request(url, 'GET', this.key);
   },
 
   /**
@@ -69,7 +69,7 @@ const base = {
    */
   list(params) {
     const url = this.buildUrl(undefined, params);
-    return this.shopify.request(url, 'GET', this.name);
+    return this.redhio.request(url, 'GET', this.name);
   },
 
   /**
@@ -82,7 +82,7 @@ const base = {
    */
   update(id, params) {
     const url = this.buildUrl(id);
-    return this.shopify.request(url, 'PUT', this.key, params);
+    return this.redhio.request(url, 'PUT', this.key, params);
   },
 
   /**
