@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates an ApiPermission instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function ApiPermission(shopify) {
-  this.shopify = shopify;
+function ApiPermission(redhio) {
+  this.redhio = redhio;
 
   this.name = 'api_permissions';
   this.key = 'api_permission';
@@ -29,7 +29,7 @@ assign(ApiPermission.prototype, pick(base, 'buildUrl'));
  */
 ApiPermission.prototype.delete = function () {
   const url = this.buildUrl('current');
-  return this.shopify.request(url, 'DELETE');
+  return this.redhio.request(url, 'DELETE');
 };
 
 module.exports = ApiPermission;

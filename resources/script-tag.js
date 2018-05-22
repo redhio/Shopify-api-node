@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a ScriptTag instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function ScriptTag(shopify) {
-  this.shopify = shopify;
+function ScriptTag(redhio) {
+  this.redhio = redhio;
 
   this.name = 'script_tags';
   this.key = 'script_tag';

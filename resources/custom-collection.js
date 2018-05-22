@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a CustomCollection instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function CustomCollection(shopify) {
-  this.shopify = shopify;
+function CustomCollection(redhio) {
+  this.redhio = redhio;
 
   this.name = 'custom_collections';
   this.key = 'custom_collection';

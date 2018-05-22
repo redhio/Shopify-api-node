@@ -1,4 +1,4 @@
-describe('Shopify#fulfillmentService', () => {
+describe('Redhio#fulfillmentService', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#fulfillmentService', () => {
   const fixtures = require('./fixtures/fulfillment-service');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#fulfillmentService', () => {
       .get('/admin/fulfillment_services.json?scope=all')
       .reply(200, output);
 
-    return shopify.fulfillmentService.list({ scope: 'all' })
+    return redhio.fulfillmentService.list({ scope: 'all' })
       .then(data => expect(data).to.deep.equal(output.fulfillment_services));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#fulfillmentService', () => {
       .post('/admin/fulfillment_services.json', input)
       .reply(201, output);
 
-    return shopify.fulfillmentService.create(input.fulfillment_service)
+    return redhio.fulfillmentService.create(input.fulfillment_service)
       .then(data => expect(data).to.deep.equal(output.fulfillment_service));
   });
 
@@ -41,7 +41,7 @@ describe('Shopify#fulfillmentService', () => {
       .get('/admin/fulfillment_services/755357713.json')
       .reply(200, output);
 
-    return shopify.fulfillmentService.get(755357713)
+    return redhio.fulfillmentService.get(755357713)
       .then(data => expect(data).to.deep.equal(output.fulfillment_service));
   });
 
@@ -53,7 +53,7 @@ describe('Shopify#fulfillmentService', () => {
       .put('/admin/fulfillment_services/755357713.json', input)
       .reply(200, output);
 
-    return shopify.fulfillmentService.update(755357713, input.fulfillment_service)
+    return redhio.fulfillmentService.update(755357713, input.fulfillment_service)
       .then(data => expect(data).to.deep.equal(output.fulfillment_service));
   });
 
@@ -62,7 +62,7 @@ describe('Shopify#fulfillmentService', () => {
       .delete('/admin/fulfillment_services/755357713.json')
       .reply(200, {});
 
-    return shopify.fulfillmentService.delete(755357713)
+    return redhio.fulfillmentService.delete(755357713)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

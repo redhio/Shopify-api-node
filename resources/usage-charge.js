@@ -8,12 +8,12 @@ const baseChild = require('../mixins/base-child');
 /**
  * Creates a UsageCharge instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function UsageCharge(shopify) {
-  this.shopify = shopify;
+function UsageCharge(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'recurring_application_charges';
   this.name = 'usage_charges';

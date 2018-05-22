@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates an ApplicationCredit instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function ApplicationCredit(shopify) {
-  this.shopify = shopify;
+function ApplicationCredit(redhio) {
+  this.redhio = redhio;
 
   this.name = 'application_credits';
   this.key = 'application_credit';

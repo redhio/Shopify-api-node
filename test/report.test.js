@@ -1,4 +1,4 @@
-describe('Shopify#report', () => {
+describe('Redhio#report', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#report', () => {
   const fixtures = require('./fixtures/report');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#report', () => {
       .get('/admin/reports.json')
       .reply(200, output);
 
-    return shopify.report.list()
+    return redhio.report.list()
       .then(data => expect(data).to.deep.equal(output.reports));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#report', () => {
       .get('/admin/reports.json?since_id=517154477')
       .reply(200, output);
 
-    return shopify.report.list({ since_id: 517154477 })
+    return redhio.report.list({ since_id: 517154477 })
       .then(data => expect(data).to.deep.equal(output.reports));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#report', () => {
       .get('/admin/reports/517154478.json')
       .reply(200, output);
 
-    return shopify.report.get(517154478)
+    return redhio.report.get(517154478)
       .then(data => expect(data).to.deep.equal(output.report));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#report', () => {
       .get('/admin/reports/517154478.json?foo=bar')
       .reply(200, output);
 
-    return shopify.report.get(517154478, { foo: 'bar' })
+    return redhio.report.get(517154478, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.report));
   });
 
@@ -63,7 +63,7 @@ describe('Shopify#report', () => {
       .post('/admin/reports.json', input)
       .reply(201, output);
 
-    return shopify.report.create(input.report)
+    return redhio.report.create(input.report)
       .then(data => expect(data).to.deep.equal(output.report));
   });
 
@@ -75,7 +75,7 @@ describe('Shopify#report', () => {
       .put('/admin/reports/517154478.json', input)
       .reply(200, output);
 
-    return shopify.report.update(517154478, input.report)
+    return redhio.report.update(517154478, input.report)
       .then(data => expect(data).to.deep.equal(output.report));
   });
 
@@ -84,7 +84,7 @@ describe('Shopify#report', () => {
       .delete('/admin/reports/517154478.json')
       .reply(200, {});
 
-    return shopify.report.delete(517154478)
+    return redhio.report.delete(517154478)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

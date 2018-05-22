@@ -9,12 +9,12 @@ const base = require('../mixins/base');
 /**
  * Creates a ProductVariant instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function ProductVariant(shopify) {
-  this.shopify = shopify;
+function ProductVariant(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'products';
   this.name = 'variants';
@@ -33,7 +33,7 @@ assign(ProductVariant.prototype, omit(baseChild, ['get', 'update']));
  */
 ProductVariant.prototype.get = function get(id, params) {
   const url = base.buildUrl.call(this, id, params);
-  return this.shopify.request(url, 'GET', this.key);
+  return this.redhio.request(url, 'GET', this.key);
 };
 
 /**
@@ -46,7 +46,7 @@ ProductVariant.prototype.get = function get(id, params) {
  */
 ProductVariant.prototype.update = function update(id, params) {
   const url = base.buildUrl.call(this, id);
-  return this.shopify.request(url, 'PUT', this.key, params);
+  return this.redhio.request(url, 'PUT', this.key, params);
 };
 
 module.exports = ProductVariant;

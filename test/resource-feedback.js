@@ -1,4 +1,4 @@
-describe('Shopify#resourceFeedback', () => {
+describe('Redhio#resourceFeedback', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#resourceFeedback', () => {
   const fixtures = require('./fixtures/resource-feedback');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#resourceFeedback', () => {
       .post('/admin/resource_feedback.json', input)
       .reply(201, output);
 
-    return shopify.resourceFeedback.create(input.resource_feedback)
+    return redhio.resourceFeedback.create(input.resource_feedback)
       .then(data => expect(data).to.deep.equal(output.resource_feedback));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#resourceFeedback', () => {
       .get('/admin/resource_feedback.json')
       .reply(200, output);
 
-    return shopify.resourceFeedback.list()
+    return redhio.resourceFeedback.list()
       .then(data => expect(data).to.deep.equal(output.resource_feedback));
   });
 });

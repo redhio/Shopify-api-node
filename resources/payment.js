@@ -8,12 +8,12 @@ const baseChild = require('../mixins/base-child');
 /**
  * Creates a Payment instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Payment(shopify) {
-  this.shopify = shopify;
+function Payment(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'checkouts';
   this.name = 'payments';

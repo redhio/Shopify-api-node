@@ -1,4 +1,4 @@
-describe('Shopify#customCollection', () => {
+describe('Redhio#customCollection', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#customCollection', () => {
   const fixtures = require('./fixtures/custom-collection');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#customCollection', () => {
       .get('/admin/custom_collections.json')
       .reply(200, output);
 
-    return shopify.customCollection.list()
+    return redhio.customCollection.list()
       .then(data => expect(data).to.deep.equal(output.custom_collections));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#customCollection', () => {
       .get('/admin/custom_collections.json?since_id=395646239')
       .reply(200, output);
 
-    return shopify.customCollection.list({ since_id: 395646239 })
+    return redhio.customCollection.list({ since_id: 395646239 })
       .then(data => expect(data).to.deep.equal(output.custom_collections));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#customCollection', () => {
       .get('/admin/custom_collections/count.json')
       .reply(200, { count: 3 });
 
-    return shopify.customCollection.count()
+    return redhio.customCollection.count()
       .then(data => expect(data).to.equal(3));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#customCollection', () => {
       .get('/admin/custom_collections/count.json?product_id=632910392')
       .reply(200, { count: 2 });
 
-    return shopify.customCollection.count({ product_id: 632910392 })
+    return redhio.customCollection.count({ product_id: 632910392 })
       .then(data => expect(data).to.equal(2));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#customCollection', () => {
       .get('/admin/custom_collections/841564295.json')
       .reply(200, output);
 
-    return shopify.customCollection.get(841564295)
+    return redhio.customCollection.get(841564295)
       .then(data => expect(data).to.deep.equal(output.custom_collection));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#customCollection', () => {
       .get('/admin/custom_collections/841564295.json?foo=bar')
       .reply(200, output);
 
-    return shopify.customCollection.get(841564295, { foo: 'bar' })
+    return redhio.customCollection.get(841564295, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.custom_collection));
   });
 
@@ -81,7 +81,7 @@ describe('Shopify#customCollection', () => {
       .post('/admin/custom_collections.json', input)
       .reply(201, output);
 
-    return shopify.customCollection.create(input.custom_collection)
+    return redhio.customCollection.create(input.custom_collection)
       .then(data => expect(data).to.deep.equal(output.custom_collection));
   });
 
@@ -93,7 +93,7 @@ describe('Shopify#customCollection', () => {
       .put('/admin/custom_collections/841564295.json', input)
       .reply(200, output);
 
-    return shopify.customCollection.update(841564295, input.custom_collection)
+    return redhio.customCollection.update(841564295, input.custom_collection)
       .then(data => expect(data).to.deep.equal(output.custom_collection));
   });
 
@@ -102,7 +102,7 @@ describe('Shopify#customCollection', () => {
       .delete('/admin/custom_collections/841564295.json')
       .reply(200, {});
 
-    return shopify.customCollection.delete(841564295)
+    return redhio.customCollection.delete(841564295)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

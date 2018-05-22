@@ -1,4 +1,4 @@
-describe('Shopify#article', () => {
+describe('Redhio#article', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#article', () => {
   const fixtures = require('./fixtures/article');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#article', () => {
       .get('/admin/blogs/241253187/articles.json')
       .reply(200, output);
 
-    return shopify.article.list(241253187)
+    return redhio.article.list(241253187)
       .then(data => expect(data).to.deep.equal(output.articles));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#article', () => {
       .get('/admin/blogs/241253187/articles.json?since_id=134645307')
       .reply(200, output);
 
-    return shopify.article.list(241253187, { since_id: 134645307 })
+    return redhio.article.list(241253187, { since_id: 134645307 })
       .then(data => expect(data).to.deep.equal(output.articles));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#article', () => {
       .get('/admin/blogs/241253187/articles/count.json')
       .reply(200, output);
 
-    return shopify.article.count(241253187)
+    return redhio.article.count(241253187)
       .then(data => expect(data).to.equal(4));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#article', () => {
       .get('/admin/blogs/241253187/articles/count.json?foo=bar')
       .reply(200, output);
 
-    return shopify.article.count(241253187, { foo: 'bar' })
+    return redhio.article.count(241253187, { foo: 'bar' })
       .then(data => expect(data).to.equal(4));
   });
 
@@ -62,7 +62,7 @@ describe('Shopify#article', () => {
       .get('/admin/blogs/241253187/articles/134645308.json')
       .reply(200, output);
 
-    return shopify.article.get(241253187, 134645308)
+    return redhio.article.get(241253187, 134645308)
       .then(data => expect(data).to.deep.equal(output.article));
   });
 
@@ -73,7 +73,7 @@ describe('Shopify#article', () => {
       .get('/admin/blogs/241253187/articles/134645308.json?foo=bar')
       .reply(200, output);
 
-    return shopify.article.get(241253187, 134645308, { foo: 'bar' })
+    return redhio.article.get(241253187, 134645308, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.article));
   });
 
@@ -85,7 +85,7 @@ describe('Shopify#article', () => {
       .post('/admin/blogs/241253187/articles.json', input)
       .reply(201, output);
 
-    return shopify.article.create(241253187, input.article)
+    return redhio.article.create(241253187, input.article)
       .then(data => expect(data).to.deep.equal(output.article));
   });
 
@@ -97,7 +97,7 @@ describe('Shopify#article', () => {
       .put('/admin/blogs/241253187/articles/134645308.json', input)
       .reply(200, output);
 
-    return shopify.article.update(241253187, 134645308, input.article)
+    return redhio.article.update(241253187, 134645308, input.article)
       .then(data => expect(data).to.deep.equal(output.article));
   });
 
@@ -108,7 +108,7 @@ describe('Shopify#article', () => {
       .get('/admin/articles/authors.json')
       .reply(200, output);
 
-    return shopify.article.authors()
+    return redhio.article.authors()
       .then(data => expect(data).to.deep.equal(output.authors));
   });
 
@@ -119,7 +119,7 @@ describe('Shopify#article', () => {
       .get('/admin/articles/tags.json')
       .reply(200, output);
 
-    return shopify.article.tags()
+    return redhio.article.tags()
       .then(data => expect(data).to.deep.equal(output.tags));
   });
 
@@ -130,7 +130,7 @@ describe('Shopify#article', () => {
       .get('/admin/articles/tags.json?foo=bar')
       .reply(200, output);
 
-    return shopify.article.tags({ foo: 'bar' })
+    return redhio.article.tags({ foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.tags));
   });
 
@@ -141,7 +141,7 @@ describe('Shopify#article', () => {
       .get('/admin/articles/tags.json?foo=bar')
       .reply(200, output);
 
-    return shopify.article.tags(undefined, { foo: 'bar' })
+    return redhio.article.tags(undefined, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.tags));
   });
 
@@ -152,7 +152,7 @@ describe('Shopify#article', () => {
       .get('/admin/blogs/241253187/articles/tags.json')
       .reply(200, output);
 
-    return shopify.article.tags(241253187)
+    return redhio.article.tags(241253187)
       .then(data => expect(data).to.deep.equal(output.tags));
   });
 
@@ -163,7 +163,7 @@ describe('Shopify#article', () => {
       .get('/admin/blogs/241253187/articles/tags.json?foo=bar')
       .reply(200, output);
 
-    return shopify.article.tags(241253187, { foo: 'bar' })
+    return redhio.article.tags(241253187, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.tags));
   });
 
@@ -172,7 +172,7 @@ describe('Shopify#article', () => {
       .delete('/admin/blogs/241253187/articles/134645308.json')
       .reply(200, {});
 
-    return shopify.article.delete(241253187, 134645308)
+    return redhio.article.delete(241253187, 134645308)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

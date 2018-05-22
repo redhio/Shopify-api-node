@@ -1,4 +1,4 @@
-describe('Shopify#policy', () => {
+describe('Redhio#policy', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#policy', () => {
   const fixtures = require('./fixtures/policy');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#policy', () => {
       .get('/admin/policies.json')
       .reply(200, output);
 
-    return shopify.policy.list()
+    return redhio.policy.list()
       .then(data => expect(data).to.deep.equal(output.policies));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#policy', () => {
       .get('/admin/policies.json?foo=bar')
       .reply(200, output);
 
-    return shopify.policy.list({ foo: 'bar' })
+    return redhio.policy.list({ foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.policies));
   });
 });

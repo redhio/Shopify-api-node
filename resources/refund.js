@@ -8,12 +8,12 @@ const baseChild = require('../mixins/base-child');
 /**
  * Creates a Refund instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Refund(shopify) {
-  this.shopify = shopify;
+function Refund(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'orders';
   this.name = 'refunds';
@@ -32,7 +32,7 @@ assign(Refund.prototype, omit(baseChild, ['count', 'delete', 'update']));
  */
 Refund.prototype.calculate = function calculate(orderId, params) {
   const url = this.buildUrl(orderId, 'calculate');
-  return this.shopify.request(url, 'POST', this.key, params);
+  return this.redhio.request(url, 'POST', this.key, params);
 };
 
 module.exports = Refund;

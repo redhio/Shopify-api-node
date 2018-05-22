@@ -74,7 +74,7 @@ Object.setPrototypeOf(Redhio.prototype, EventEmitter.prototype);
  * @param {String} header X-Redhio-Shop-Api-Call-Limit header
  * @private
  */
-Shopify.prototype.updateLimits = function updateLimits(header) {
+Redhio.prototype.updateLimits = function updateLimits(header) {
   if (!header) return;
 
   const limits = header.split('/').map(Number);

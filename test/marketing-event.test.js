@@ -1,4 +1,4 @@
-describe('Shopify#marketingEvent', () => {
+describe('Redhio#marketingEvent', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#marketingEvent', () => {
   const fixtures = require('./fixtures/marketing-event');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#marketingEvent', () => {
       .get('/admin/marketing_events.json')
       .reply(200, output);
 
-    return shopify.marketingEvent.list()
+    return redhio.marketingEvent.list()
       .then(data => expect(data).to.deep.equal(output.marketing_events));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#marketingEvent', () => {
       .get('/admin/marketing_events.json?limit=50')
       .reply(200, output);
 
-    return shopify.marketingEvent.list({ limit: 50 })
+    return redhio.marketingEvent.list({ limit: 50 })
       .then(data => expect(data).to.deep.equal(output.marketing_events));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#marketingEvent', () => {
       .get('/admin/marketing_events/count.json')
       .reply(200, output);
 
-    return shopify.marketingEvent.count()
+    return redhio.marketingEvent.count()
       .then(data => expect(data).to.equal(1));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#marketingEvent', () => {
       .get('/admin/marketing_events/998730532.json')
       .reply(200, output);
 
-    return shopify.marketingEvent.get(998730532)
+    return redhio.marketingEvent.get(998730532)
       .then(data => expect(data).to.deep.equal(output.marketing_event));
   });
 
@@ -63,7 +63,7 @@ describe('Shopify#marketingEvent', () => {
       .post('/admin/marketing_events.json', input)
       .reply(201, output);
 
-    return shopify.marketingEvent.create(input.marketing_event)
+    return redhio.marketingEvent.create(input.marketing_event)
       .then(data => expect(data).to.deep.equal(output.marketing_event));
   });
 
@@ -75,7 +75,7 @@ describe('Shopify#marketingEvent', () => {
       .put('/admin/marketing_events/998730532.json', input)
       .reply(200, output);
 
-    return shopify.marketingEvent.update(998730532, input.marketing_event)
+    return redhio.marketingEvent.update(998730532, input.marketing_event)
       .then(data => expect(data).to.deep.equal(output.marketing_event));
   });
 
@@ -84,7 +84,7 @@ describe('Shopify#marketingEvent', () => {
       .delete('/admin/marketing_events/998730532.json')
       .reply(200, {});
 
-    return shopify.marketingEvent.delete(998730532)
+    return redhio.marketingEvent.delete(998730532)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -96,7 +96,7 @@ describe('Shopify#marketingEvent', () => {
       .post('/admin/marketing_events/998730532/engagements.json', input)
       .reply(201, output);
 
-    return shopify.marketingEvent.engagements(998730532, input.engagements)
+    return redhio.marketingEvent.engagements(998730532, input.engagements)
       .then(data => expect(data).to.deep.equal(output.engagements));
   });
 });

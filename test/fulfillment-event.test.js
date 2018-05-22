@@ -1,4 +1,4 @@
-describe('Shopify#fulfillmentEvent', () => {
+describe('Redhio#fulfillmentEvent', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#fulfillmentEvent', () => {
   const fixtures = require('./fixtures/fulfillment-event');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#fulfillmentEvent', () => {
       .get('/admin/orders/450789469/fulfillments/255858046/events.json')
       .reply(200, output);
 
-    return shopify.fulfillmentEvent.list(450789469, 255858046)
+    return redhio.fulfillmentEvent.list(450789469, 255858046)
       .then(data => expect(data).to.deep.equal(output.fulfillment_events));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#fulfillmentEvent', () => {
       .get('/admin/orders/450789469/fulfillments/255858046/events.json?foo=bar')
       .reply(200, output);
 
-    return shopify.fulfillmentEvent.list(450789469, 255858046, { foo: 'bar' })
+    return redhio.fulfillmentEvent.list(450789469, 255858046, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.fulfillment_events));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#fulfillmentEvent', () => {
       .get('/admin/orders/450789469/fulfillments/255858046/events/3.json')
       .reply(200, output);
 
-    return shopify.fulfillmentEvent.get(450789469, 255858046, 3)
+    return redhio.fulfillmentEvent.get(450789469, 255858046, 3)
       .then(data => expect(data).to.deep.equal(output.fulfillment_event));
   });
 
@@ -52,7 +52,7 @@ describe('Shopify#fulfillmentEvent', () => {
       .post('/admin/orders/450789469/fulfillments/255858046/events.json', input)
       .reply(201, output);
 
-    return shopify.fulfillmentEvent.create(450789469, 255858046, input.event)
+    return redhio.fulfillmentEvent.create(450789469, 255858046, input.event)
       .then(data => expect(data).to.deep.equal(output.fulfillment_event));
   });
 
@@ -64,7 +64,7 @@ describe('Shopify#fulfillmentEvent', () => {
       .put('/admin/orders/450789469/fulfillments/255858046/events/1.json', input)
       .reply(200, output);
 
-    return shopify.fulfillmentEvent.update(450789469, 255858046, 1, input.event)
+    return redhio.fulfillmentEvent.update(450789469, 255858046, 1, input.event)
       .then(data => expect(data).to.deep.equal(output.fulfillment_event));
   });
 
@@ -73,7 +73,7 @@ describe('Shopify#fulfillmentEvent', () => {
       .delete('/admin/orders/450789469/fulfillments/255858046/events/2.json')
       .reply(200, {});
 
-    return shopify.fulfillmentEvent.delete(450789469, 255858046, 2)
+    return redhio.fulfillmentEvent.delete(450789469, 255858046, 2)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

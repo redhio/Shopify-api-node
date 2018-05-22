@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Theme instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Theme(shopify) {
-  this.shopify = shopify;
+function Theme(redhio) {
+  this.redhio = redhio;
 
   this.name = 'themes';
   this.key = 'theme';

@@ -6,12 +6,12 @@ const qs = require('qs');
 /**
  * Creates a FulfillmentEvent instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function FulfillmentEvent(shopify) {
-  this.shopify = shopify;
+function FulfillmentEvent(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'fulfillments';
   this.key = 'fulfillment_event';
@@ -29,7 +29,7 @@ function FulfillmentEvent(shopify) {
  */
 FulfillmentEvent.prototype.list = function list(orderId, fulfillmentId, params) {
   const url = this.buildUrl(orderId, fulfillmentId, undefined, params);
-  return this.shopify.request(url, 'GET', `${this.key}s`);
+  return this.redhio.request(url, 'GET', `${this.key}s`);
 };
 
 /**
@@ -43,7 +43,7 @@ FulfillmentEvent.prototype.list = function list(orderId, fulfillmentId, params) 
  */
 FulfillmentEvent.prototype.get = function get(orderId, fulfillmentId, id) {
   const url = this.buildUrl(orderId, fulfillmentId, id);
-  return this.shopify.request(url, 'GET', this.key);
+  return this.redhio.request(url, 'GET', this.key);
 };
 
 /**
@@ -57,7 +57,7 @@ FulfillmentEvent.prototype.get = function get(orderId, fulfillmentId, id) {
  */
 FulfillmentEvent.prototype.create = function create(orderId, fulfillmentId, params) {
   const url = this.buildUrl(orderId, fulfillmentId);
-  return this.shopify.request(url, 'POST', undefined, { event: params })
+  return this.redhio.request(url, 'POST', undefined, { event: params })
     .then(body => body[this.key]);
 };
 
@@ -73,7 +73,7 @@ FulfillmentEvent.prototype.create = function create(orderId, fulfillmentId, para
  */
 FulfillmentEvent.prototype.update = function update(orderId, fulfillmentId, id, params) {
   const url = this.buildUrl(orderId, fulfillmentId, id);
-  return this.shopify.request(url, 'PUT', undefined, { event: params })
+  return this.redhio.request(url, 'PUT', undefined, { event: params })
     .then(body => body[this.key]);
 };
 
@@ -88,7 +88,7 @@ FulfillmentEvent.prototype.update = function update(orderId, fulfillmentId, id, 
  */
 FulfillmentEvent.prototype.delete = function remove(orderId, fulfillmentId, id) {
   const url = this.buildUrl(orderId, fulfillmentId, id);
-  return this.shopify.request(url, 'DELETE');
+  return this.redhio.request(url, 'DELETE');
 };
 
 /**
@@ -117,7 +117,7 @@ FulfillmentEvent.prototype.buildUrl = function buildUrl(orderId, fulfillmentId, 
 
   if (query) path += '?' + qs.stringify(query, { arrayFormat: 'brackets' });
 
-  return assign({ path }, this.shopify.baseUrl);
+  return assign({ path }, this.redhio.baseUrl);
 };
 
 module.exports = FulfillmentEvent;

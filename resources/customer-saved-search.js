@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a CustomerSavedSearch instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function CustomerSavedSearch(shopify) {
-  this.shopify = shopify;
+function CustomerSavedSearch(redhio) {
+  this.redhio = redhio;
 
   this.name = 'customer_saved_searches';
   this.key = 'customer_saved_search';
@@ -31,7 +31,7 @@ assign(CustomerSavedSearch.prototype, base);
  */
 CustomerSavedSearch.prototype.customers = function customers(id, params) {
   const url = this.buildUrl(`${id}/customers`, params);
-  return this.shopify.request(url, 'GET', 'customers');
+  return this.redhio.request(url, 'GET', 'customers');
 };
 
 module.exports = CustomerSavedSearch;

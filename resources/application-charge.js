@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates an ApplicationCharge instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function ApplicationCharge(shopify) {
-  this.shopify = shopify;
+function ApplicationCharge(redhio) {
+  this.redhio = redhio;
 
   this.name = 'application_charges';
   this.key = 'application_charge';
@@ -35,7 +35,7 @@ assign(ApplicationCharge.prototype, omit(base, [
  */
 ApplicationCharge.prototype.activate = function activate(id, params) {
   const url = this.buildUrl(`${id}/activate`);
-  return this.shopify.request(url, 'POST', this.key, params);
+  return this.redhio.request(url, 'POST', this.key, params);
 };
 
 module.exports = ApplicationCharge;

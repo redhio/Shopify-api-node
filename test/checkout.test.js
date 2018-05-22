@@ -1,4 +1,4 @@
-describe('Shopify#checkout', () => {
+describe('Redhio#checkout', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#checkout', () => {
   const fixtures = require('./fixtures/checkout');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -16,7 +16,7 @@ describe('Shopify#checkout', () => {
       .get('/admin/checkouts/count.json')
       .reply(200, { count: 5 });
 
-    return shopify.checkout.count()
+    return redhio.checkout.count()
       .then(data => expect(data).to.equal(5));
   });
 
@@ -25,7 +25,7 @@ describe('Shopify#checkout', () => {
       .get('/admin/checkouts/count.json?foo=bar')
       .reply(200, { count: 5 });
 
-    return shopify.checkout.count({ foo: 'bar' })
+    return redhio.checkout.count({ foo: 'bar' })
       .then(data => expect(data).to.equal(5));
   });
 
@@ -36,7 +36,7 @@ describe('Shopify#checkout', () => {
       .get('/admin/checkouts.json')
       .reply(200, output);
 
-    return shopify.checkout.list()
+    return redhio.checkout.list()
       .then(data => expect(data).to.deep.equal(output.checkouts));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#checkout', () => {
       .get('/admin/checkouts.json?foo=bar')
       .reply(200, output);
 
-    return shopify.checkout.list({ foo: 'bar' })
+    return redhio.checkout.list({ foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.checkouts));
   });
 
@@ -59,7 +59,7 @@ describe('Shopify#checkout', () => {
       .post('/admin/checkouts.json', input)
       .reply(201, output);
 
-    return shopify.checkout.create(input.checkout)
+    return redhio.checkout.create(input.checkout)
       .then(data => expect(data).to.deep.equal(output.checkout));
   });
 
@@ -71,7 +71,7 @@ describe('Shopify#checkout', () => {
       .post(`/admin/checkouts/${token}/complete.json`, {})
       .reply(202, output);
 
-    return shopify.checkout.complete(token)
+    return redhio.checkout.complete(token)
       .then(data => expect(data).to.deep.equal(output.checkout));
   });
 
@@ -82,7 +82,7 @@ describe('Shopify#checkout', () => {
       .get('/admin/checkouts/bd5a8aa1ecd019dd3520ff791ee3a24c.json')
       .reply(200, output);
 
-    return shopify.checkout.get('bd5a8aa1ecd019dd3520ff791ee3a24c')
+    return redhio.checkout.get('bd5a8aa1ecd019dd3520ff791ee3a24c')
       .then(data => expect(data).to.deep.equal(output.checkout));
   });
 
@@ -95,7 +95,7 @@ describe('Shopify#checkout', () => {
       .put(`/admin/checkouts/${token}.json`, input)
       .reply(202, output);
 
-    return shopify.checkout.update(token, input.checkout)
+    return redhio.checkout.update(token, input.checkout)
       .then(data => expect(data).to.deep.equal(output.checkout));
   });
 
@@ -107,7 +107,7 @@ describe('Shopify#checkout', () => {
       .get(`/admin/checkouts/${token}/shipping_rates.json`)
       .reply(200, output);
 
-    return shopify.checkout.shippingRates(token)
+    return redhio.checkout.shippingRates(token)
       .then(data => expect(data).to.deep.equal(output.shipping_rates));
   });
 });

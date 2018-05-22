@@ -1,4 +1,4 @@
-describe('Shopify#productImage', () => {
+describe('Redhio#productImage', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#productImage', () => {
   const fixtures = require('./fixtures/product-image');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#productImage', () => {
       .get('/admin/products/632910392/images.json')
       .reply(200, output);
 
-    return shopify.productImage.list(632910392)
+    return redhio.productImage.list(632910392)
       .then(data => expect(data).to.deep.equal(output.images));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#productImage', () => {
       .get('/admin/products/632910392/images.json?since_id=562641782')
       .reply(200, output);
 
-    return shopify.productImage.list(632910392, { since_id: 562641782 })
+    return redhio.productImage.list(632910392, { since_id: 562641782 })
       .then(data => expect(data).to.deep.equal(output.images));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#productImage', () => {
       .get('/admin/products/632910392/images/count.json')
       .reply(200, { count: 2 });
 
-    return shopify.productImage.count(632910392)
+    return redhio.productImage.count(632910392)
       .then(data => expect(data).to.equal(2));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#productImage', () => {
       .get('/admin/products/632910392/images/count.json?since_id=562641782')
       .reply(200, { count: 2 });
 
-    return shopify.productImage.count(632910392, { since_id: 562641782 })
+    return redhio.productImage.count(632910392, { since_id: 562641782 })
       .then(data => expect(data).to.equal(2));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#productImage', () => {
       .get('/admin/products/632910392/images/850703190.json')
       .reply(200, output);
 
-    return shopify.productImage.get(632910392, 850703190)
+    return redhio.productImage.get(632910392, 850703190)
       .then(data => expect(data).to.deep.equal(output.image));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#productImage', () => {
       .get('/admin/products/632910392/images/850703190.json?foo=bar')
       .reply(200, output);
 
-    return shopify.productImage.get(632910392, 850703190, { foo: 'bar' })
+    return redhio.productImage.get(632910392, 850703190, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.image));
   });
 
@@ -81,7 +81,7 @@ describe('Shopify#productImage', () => {
       .post('/admin/products/632910392/images.json', input)
       .reply(201, output);
 
-    return shopify.productImage.create(632910392, input.image)
+    return redhio.productImage.create(632910392, input.image)
       .then(data => expect(data).to.deep.equal(output.image));
   });
 
@@ -93,7 +93,7 @@ describe('Shopify#productImage', () => {
       .put('/admin/products/632910392/images/850703190.json', input)
       .reply(200, output);
 
-    return shopify.productImage.update(632910392, 850703190, input.image)
+    return redhio.productImage.update(632910392, 850703190, input.image)
       .then(data => expect(data).to.deep.equal(output.image));
   });
 
@@ -102,7 +102,7 @@ describe('Shopify#productImage', () => {
       .delete('/admin/products/632910392/images/850703190.json')
       .reply(200, {});
 
-    return shopify.productImage.delete(632910392, 850703190)
+    return redhio.productImage.delete(632910392, 850703190)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

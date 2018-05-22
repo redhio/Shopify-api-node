@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a PriceRule instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function PriceRule(shopify) {
-  this.shopify = shopify;
+function PriceRule(redhio) {
+  this.redhio = redhio;
 
   this.name = 'price_rules';
   this.key = 'price_rule';

@@ -1,4 +1,4 @@
-describe('Shopify#scriptTag', () => {
+describe('Redhio#scriptTag', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#scriptTag', () => {
   const fixtures = require('./fixtures/script-tag');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#scriptTag', () => {
       .get('/admin/script_tags.json')
       .reply(200, output);
 
-    return shopify.scriptTag.list()
+    return redhio.scriptTag.list()
       .then(data => expect(data).to.deep.equal(output.script_tags));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#scriptTag', () => {
       .get('/admin/script_tags.json?page=1')
       .reply(200, output);
 
-    return shopify.scriptTag.list({ page: 1 })
+    return redhio.scriptTag.list({ page: 1 })
       .then(data => expect(data).to.deep.equal(output.script_tags));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#scriptTag', () => {
       .get('/admin/script_tags/count.json')
       .reply(200, { count: 2 });
 
-    return shopify.scriptTag.count()
+    return redhio.scriptTag.count()
       .then(data => expect(data).to.equal(2));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#scriptTag', () => {
       .get('/admin/script_tags/count.json?foo=bar')
       .reply(200, { count: 2 });
 
-    return shopify.scriptTag.count({ foo: 'bar' })
+    return redhio.scriptTag.count({ foo: 'bar' })
       .then(data => expect(data).to.equal(2));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#scriptTag', () => {
       .get('/admin/script_tags/596726825.json')
       .reply(200, output);
 
-    return shopify.scriptTag.get(596726825)
+    return redhio.scriptTag.get(596726825)
       .then(data => expect(data).to.deep.equal(output.script_tag));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#scriptTag', () => {
       .get('/admin/script_tags/596726825.json?foo=bar')
       .reply(200, output);
 
-    return shopify.scriptTag.get(596726825, { foo: 'bar' })
+    return redhio.scriptTag.get(596726825, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.script_tag));
   });
 
@@ -81,7 +81,7 @@ describe('Shopify#scriptTag', () => {
       .post('/admin/script_tags.json', input)
       .reply(201, output);
 
-    return shopify.scriptTag.create(input.script_tag)
+    return redhio.scriptTag.create(input.script_tag)
       .then(data => expect(data).to.deep.equal(output.script_tag));
   });
 
@@ -93,7 +93,7 @@ describe('Shopify#scriptTag', () => {
       .put('/admin/script_tags/596726825.json', input)
       .reply(200, output);
 
-    return shopify.scriptTag.update(596726825, input.script_tag)
+    return redhio.scriptTag.update(596726825, input.script_tag)
       .then(data => expect(data).to.deep.equal(output.script_tag));
   });
 
@@ -102,7 +102,7 @@ describe('Shopify#scriptTag', () => {
       .delete('/admin/script_tags/596726825.json')
       .reply(200, {});
 
-    return shopify.scriptTag.delete(596726825)
+    return redhio.scriptTag.delete(596726825)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

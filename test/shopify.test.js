@@ -1,4 +1,4 @@
-describe('Shopify', () => {
+describe('Redhio', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -9,41 +9,41 @@ describe('Shopify', () => {
   const Blog = require('../resources/blog');
   const common = require('./common');
   const pkg = require('../package');
-  const Shopify = require('..');
+  const Redhio = require('..');
 
   const accessToken = common.accessToken;
   const shopName = common.shopName;
   const password = common.password;
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const apiKey = common.apiKey;
 
   it('exports the constructor', () => {
-    expect(Shopify).to.be.a('function');
+    expect(Redhio).to.be.a('function');
   });
 
   it('throws an error when required options missing or invalid', () => {
     const msg = 'Missing or invalid options';
 
-    expect(() => new Shopify()).to.throw(Error, msg);
-    expect(() => new Shopify({})).to.throw(Error, msg);
-    expect(() => new Shopify({ shopName })).to.throw(Error, msg);
-    expect(() => new Shopify({ apiKey })).to.throw(Error, msg);
-    expect(() => new Shopify({ password })).to.throw(Error, msg);
-    expect(() => new Shopify({ accessToken, apiKey })).to.throw(Error, msg);
-    expect(() => new Shopify({ accessToken, password })).to.throw(Error, msg);
+    expect(() => new Redhio()).to.throw(Error, msg);
+    expect(() => new Redhio({})).to.throw(Error, msg);
+    expect(() => new Redhio({ shopName })).to.throw(Error, msg);
+    expect(() => new Redhio({ apiKey })).to.throw(Error, msg);
+    expect(() => new Redhio({ password })).to.throw(Error, msg);
+    expect(() => new Redhio({ accessToken, apiKey })).to.throw(Error, msg);
+    expect(() => new Redhio({ accessToken, password })).to.throw(Error, msg);
   });
 
   it('makes the new operator optional', () => {
-    const shopify = Shopify({ shopName, accessToken });
+    const redhio = Redhio({ shopName, accessToken });
 
-    expect(shopify).to.be.an.instanceof(Shopify);
+    expect(redhio).to.be.an.instanceof(Redhio);
   });
 
-  it("allows the shop's 'myshopify.com' domain to be used as shopName", () => {
-    const shopName = 'johns-apparel.myshopify.com';
-    const shopify = new Shopify({ shopName, apiKey, password });
+  it("allows the shop's 'myredhio.com' domain to be used as shopName", () => {
+    const shopName = 'johns-apparel.myredhio.com';
+    const redhio = new Redhio({ shopName, apiKey, password });
 
-    expect(shopify.baseUrl).to.deep.equal({
+    expect(redhio.baseUrl).to.deep.equal({
       auth: `${apiKey}:${password}`,
       hostname: shopName,
       protocol: 'https:'
@@ -51,61 +51,61 @@ describe('Shopify', () => {
   });
 
   it('adds basic auth to the URL when using apiKey and password', () => {
-    const shopify = new Shopify({ shopName, apiKey, password });
+    const redhio = new Redhio({ shopName, apiKey, password });
 
-    expect(shopify.baseUrl).to.deep.equal({
-      hostname: `${shopName}.myshopify.com`,
+    expect(redhio.baseUrl).to.deep.equal({
+      hostname: `${shopName}.myredhio.com`,
       auth: `${apiKey}:${password}`,
       protocol: 'https:'
     });
   });
 
   it('does not add basic auth to the URL when using an access token', () => {
-    const shopify = new Shopify({ shopName, accessToken });
+    const redhio = new Redhio({ shopName, accessToken });
 
-    expect(shopify.baseUrl).to.deep.equal({
-      hostname: `${shopName}.myshopify.com`,
+    expect(redhio.baseUrl).to.deep.equal({
+      hostname: `${shopName}.myredhio.com`,
       protocol: 'https:',
       auth: false
     });
   });
 
   it('instantiates the resources lazily', () => {
-    const shopify = new Shopify({ shopName, accessToken });
+    const redhio = new Redhio({ shopName, accessToken });
 
-    expect(shopify.hasOwnProperty('blog')).to.be.false;
+    expect(redhio.hasOwnProperty('blog')).to.be.false;
 
-    const blog = shopify.blog;
+    const blog = redhio.blog;
 
     expect(blog).to.be.an.instanceof(Blog);
-    expect(shopify.hasOwnProperty('blog')).to.be.true;
-    expect(shopify.blog).to.equal(blog);
+    expect(redhio.hasOwnProperty('blog')).to.be.true;
+    expect(redhio.blog).to.equal(blog);
   });
 
   it('allows to manually instantiate a resource', () => {
-    const shopify = new Shopify({ shopName, accessToken });
-    const blog = new Blog(shopify);
+    const redhio = new Redhio({ shopName, accessToken });
+    const blog = new Blog(redhio);
 
-    expect(shopify.hasOwnProperty('blog')).to.be.false;
+    expect(redhio.hasOwnProperty('blog')).to.be.false;
 
-    shopify.blog = blog;
+    redhio.blog = blog;
 
-    expect(shopify.hasOwnProperty('blog')).to.be.true;
-    expect(shopify.blog).to.equal(blog);
+    expect(redhio.hasOwnProperty('blog')).to.be.true;
+    expect(redhio.blog).to.equal(blog);
   });
 
   it('has undefined callLimit values for the initial instance', () => {
-    const shopify = new Shopify({ shopName, accessToken });
+    const redhio = new Redhio({ shopName, accessToken });
 
-    expect(shopify.callLimits).to.deep.equal({
+    expect(redhio.callLimits).to.deep.equal({
       remaining: undefined,
       current: undefined,
       max: undefined
     });
   });
 
-  describe('Shopify#request', () => {
-    const url = assign({ path: '/test' }, shopify.baseUrl);
+  describe('Redhio#request', () => {
+    const url = assign({ path: '/test' }, redhio.baseUrl);
     const scope = common.scope;
 
     afterEach(() => expect(nock.isDone()).to.be.true);
@@ -117,7 +117,7 @@ describe('Shopify', () => {
         .get('/test')
         .replyWithError(message);
 
-      return shopify.request(url, 'GET').then(() => {
+      return redhio.request(url, 'GET').then(() => {
         throw new Error('Test invalidation');
       }, err => {
         expect(err).to.be.an.instanceof(got.RequestError);
@@ -126,7 +126,7 @@ describe('Shopify', () => {
     });
 
     it('returns a RequestError when timeout expires (1/2)', () => {
-      const shopify = new Shopify({ shopName, accessToken, timeout: 100 });
+      const redhio = new Redhio({ shopName, accessToken, timeout: 100 });
 
       //
       // `scope.delay()` can only delay the `response` event. The connection is
@@ -134,9 +134,9 @@ describe('Shopify', () => {
       // issue a non-routable IP address is used here instead of `nock`. See
       // https://tools.ietf.org/html/rfc5737#section-3
       //
-      shopify.baseUrl.hostname = '192.0.2.1';
+      redhio.baseUrl.hostname = '192.0.2.1';
 
-      return shopify.request(shopify.baseUrl, 'GET').then(() => {
+      return redhio.request(redhio.baseUrl, 'GET').then(() => {
         throw new Error('Test invalidation');
       }, err => {
         expect(err).to.be.an.instanceof(got.RequestError);
@@ -145,14 +145,14 @@ describe('Shopify', () => {
     });
 
     it('returns a RequestError when timeout expires (2/2)', () => {
-      const shopify = new Shopify({ shopName, accessToken, timeout: 100 });
+      const redhio = new Redhio({ shopName, accessToken, timeout: 100 });
 
       scope
         .get('/test')
         .delayBody(200)
         .reply(200, {});
 
-      return shopify.request(url, 'GET').then(() => {
+      return redhio.request(url, 'GET').then(() => {
         throw new Error('Test invalidation');
       }, err => {
         expect(err).to.be.an.instanceof(got.RequestError);
@@ -165,7 +165,7 @@ describe('Shopify', () => {
         .get('/test')
         .reply(200, 'invalid JSON');
 
-      return shopify.request(url, 'GET').then(() => {
+      return redhio.request(url, 'GET').then(() => {
         throw new Error('Test invalidation');
       }, err => {
         expect(err).to.be.an.instanceof(got.ParseError);
@@ -178,7 +178,7 @@ describe('Shopify', () => {
         .get('/test')
         .reply(400, {});
 
-      return shopify.request(url, 'GET').then(() => {
+      return redhio.request(url, 'GET').then(() => {
         throw new Error('Test invalidation');
       }, err => {
         expect(err).to.be.an.instanceof(got.HTTPError);
@@ -187,27 +187,27 @@ describe('Shopify', () => {
     });
 
     it('uses basic auth as intended', () => {
-      const shopify = new Shopify({ shopName, apiKey, password });
-      const url = assign({ path: '/test' }, shopify.baseUrl);
+      const redhio = new Redhio({ shopName, apiKey, password });
+      const url = assign({ path: '/test' }, redhio.baseUrl);
 
-      nock(`https://${shopName}.myshopify.com`, {
+      nock(`https://${shopName}.myredhio.com`, {
         reqheaders: {
           'User-Agent': `${pkg.name}/${pkg.version}`,
           'Accept': 'application/json'
         },
-        badheaders: ['X-Shopify-Access-Token']
+        badheaders: ['X-Redhio-Access-Token']
       }).get('/test')
         .basicAuth({ user: apiKey, pass: password })
         .reply(200, {});
 
-      return shopify.request(url, 'GET');
+      return redhio.request(url, 'GET');
     });
 
     it('builds the request body as intended (1/2)', () => {
-      nock(`https://${shopName}.myshopify.com`, {
+      nock(`https://${shopName}.myredhio.com`, {
         reqheaders: {
           'User-Agent': `${pkg.name}/${pkg.version}`,
-          'X-Shopify-Access-Token': accessToken,
+          'X-Redhio-Access-Token': accessToken,
           'Content-Type': 'application/json',
           'Content-Length': val => val > 0,
           'Accept': 'application/json'
@@ -216,14 +216,14 @@ describe('Shopify', () => {
         foo: { bar: 'baz' }
       }).reply(201, {});
 
-      return shopify.request(url, 'POST', 'foo', { bar: 'baz' });
+      return redhio.request(url, 'POST', 'foo', { bar: 'baz' });
     });
 
     it('builds the request body as intended (2/2)', () => {
-      nock(`https://${shopName}.myshopify.com`, {
+      nock(`https://${shopName}.myredhio.com`, {
         reqheaders: {
           'User-Agent': `${pkg.name}/${pkg.version}`,
-          'X-Shopify-Access-Token': accessToken,
+          'X-Redhio-Access-Token': accessToken,
           'Content-Type': 'application/json',
           'Content-Length': val => val > 0,
           'Accept': 'application/json'
@@ -231,19 +231,19 @@ describe('Shopify', () => {
       }).post('/test', { bar: 'baz' })
         .reply(201, {});
 
-      return shopify.request(url, 'POST', undefined, { bar: 'baz' });
+      return redhio.request(url, 'POST', undefined, { bar: 'baz' });
     });
 
     it('updates callLimits if the relevant header exists (1/2)', () => {
       scope
         .get('/test')
         .reply(200, {}, {
-          'X-Shopify-Shop-Api-Call-Limit': '4/40'
+          'X-Redhio-Shop-Api-Call-Limit': '4/40'
         });
 
-      return shopify.request(url, 'GET')
+      return redhio.request(url, 'GET')
         .then(() => {
-          expect(shopify.callLimits).to.deep.equal({
+          expect(redhio.callLimits).to.deep.equal({
             remaining: 36,
             current: 4,
             max: 40
@@ -255,13 +255,13 @@ describe('Shopify', () => {
       scope
         .get('/test')
         .reply(422, {}, {
-          'X-Shopify-Shop-Api-Call-Limit': '5/40'
+          'X-Redhio-Shop-Api-Call-Limit': '5/40'
         });
 
-      return shopify.request(url, 'GET').then(() => {
+      return redhio.request(url, 'GET').then(() => {
         throw new Error('Test invalidation');
       }, () => {
-        expect(shopify.callLimits).to.deep.equal({
+        expect(redhio.callLimits).to.deep.equal({
           remaining: 35,
           current: 5,
           max: 40
@@ -273,10 +273,10 @@ describe('Shopify', () => {
       scope
         .get('/test')
         .reply(200, {}, {
-          'X-Shopify-Shop-Api-Call-Limit': '6/40'
+          'X-Redhio-Shop-Api-Call-Limit': '6/40'
         });
 
-      shopify.on('callLimits', limits => {
+      redhio.on('callLimits', limits => {
         expect(limits).to.deep.equal({
           remaining: 34,
           current: 6,
@@ -285,7 +285,7 @@ describe('Shopify', () => {
         done();
       });
 
-      shopify.request(url, 'GET');
+      redhio.request(url, 'GET');
     });
 
     it('does not update callLimits if the relevant header is missing', () => {
@@ -293,9 +293,9 @@ describe('Shopify', () => {
         .get('/test')
         .reply(200, {});
 
-      return shopify.request(url, 'GET')
+      return redhio.request(url, 'GET')
         .then(() => {
-          expect(shopify.callLimits).to.deep.equal({
+          expect(redhio.callLimits).to.deep.equal({
             remaining: 34,
             current: 6,
             max: 40
@@ -310,7 +310,7 @@ describe('Shopify', () => {
         .get('/test')
         .reply(200, data);
 
-      return shopify.request(url, 'GET', 'foo')
+      return redhio.request(url, 'GET', 'foo')
         .then(res => expect(res).to.equal(data.foo));
     });
 
@@ -321,7 +321,7 @@ describe('Shopify', () => {
         .get('/test')
         .reply(200, data);
 
-      return shopify.request(url, 'GET')
+      return redhio.request(url, 'GET')
         .then(res => expect(res).to.deep.equal(data));
     });
 
@@ -330,26 +330,26 @@ describe('Shopify', () => {
         .get('/test')
         .reply(200);
 
-      return shopify.request(url, 'GET')
+      return redhio.request(url, 'GET')
         .then(res => expect(res).to.deep.equal({}));
     });
 
     it('is throttled when the autoLimit option is set', () => {
-      const original = Shopify.prototype.request;
+      const original = Redhio.prototype.request;
       const timestamps = [];
 
-      Shopify.prototype.request = function () {
+      Redhio.prototype.request = function () {
         timestamps.push(Date.now());
         return original.apply(this, arguments);
       };
 
-      const shopify = new Shopify({
+      const redhio = new Redhio({
         autoLimit: { calls: 1, interval: 100, bucketSize: 1 },
         accessToken,
         shopName
       });
 
-      Shopify.prototype.request = original;
+      Redhio.prototype.request = original;
 
       scope
         .get('/test')
@@ -357,9 +357,9 @@ describe('Shopify', () => {
         .reply(200, {});
 
       return Promise.all([
-        shopify.request(url, 'GET'),
-        shopify.request(url, 'GET'),
-        shopify.request(url, 'GET')
+        redhio.request(url, 'GET'),
+        redhio.request(url, 'GET'),
+        redhio.request(url, 'GET')
       ]).then(() => {
         expect(timestamps.length).to.equal(3);
         expect(timestamps[2] - timestamps[1]).to.be.within(80, 120);

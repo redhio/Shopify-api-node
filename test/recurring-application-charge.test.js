@@ -1,4 +1,4 @@
-describe('Shopify#recurringApplicationCharge', () => {
+describe('Redhio#recurringApplicationCharge', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#recurringApplicationCharge', () => {
   const fixtures = require('./fixtures/recurring-application-charge');
   const common = require('./common');
 
-  const resource = common.shopify.recurringApplicationCharge;
+  const resource = common.redhio.recurringApplicationCharge;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);

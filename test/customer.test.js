@@ -1,4 +1,4 @@
-describe('Shopify#customer', () => {
+describe('Redhio#customer', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -7,7 +7,7 @@ describe('Shopify#customer', () => {
   const fixtures = require('./fixtures/customer');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#customer', () => {
       .get('/admin/customers.json')
       .reply(200, output);
 
-    return shopify.customer.list()
+    return redhio.customer.list()
       .then(data => expect(data).to.deep.equal(output.customers));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#customer', () => {
       .get('/admin/customers.json?since_id=207119550')
       .reply(200, output);
 
-    return shopify.customer.list({ since_id: 207119550 })
+    return redhio.customer.list({ since_id: 207119550 })
       .then(data => expect(data).to.deep.equal(output.customers));
   });
 
@@ -42,7 +42,7 @@ describe('Shopify#customer', () => {
       .get('/admin/customers/search.json?' + qs.stringify(params))
       .reply(200, output);
 
-    return shopify.customer.search(params)
+    return redhio.customer.search(params)
       .then(data => expect(data).to.deep.equal(output.customers));
   });
 
@@ -53,7 +53,7 @@ describe('Shopify#customer', () => {
       .get('/admin/customers/207119551.json')
       .reply(200, output);
 
-    return shopify.customer.get(207119551)
+    return redhio.customer.get(207119551)
       .then(data => expect(data).to.deep.equal(output.customer));
   });
 
@@ -64,7 +64,7 @@ describe('Shopify#customer', () => {
       .get('/admin/customers/207119551.json?foo=bar')
       .reply(200, output);
 
-    return shopify.customer.get(207119551, { foo: 'bar' })
+    return redhio.customer.get(207119551, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.customer));
   });
 
@@ -76,7 +76,7 @@ describe('Shopify#customer', () => {
       .post('/admin/customers.json', input)
       .reply(201, output);
 
-    return shopify.customer.create(input.customer)
+    return redhio.customer.create(input.customer)
       .then(data => expect(data).to.deep.equal(output.customer));
   });
 
@@ -88,7 +88,7 @@ describe('Shopify#customer', () => {
       .put('/admin/customers/207119551.json', input)
       .reply(200, output);
 
-    return shopify.customer.update(207119551, input.customer)
+    return redhio.customer.update(207119551, input.customer)
       .then(data => expect(data).to.deep.equal(output.customer));
   });
 
@@ -100,7 +100,7 @@ describe('Shopify#customer', () => {
       .post('/admin/customers/207119551/account_activation_url.json', input)
       .reply(200, output);
 
-    return shopify.customer.accountActivationUrl(207119551)
+    return redhio.customer.accountActivationUrl(207119551)
       .then(data => expect(data).to.equal(output.account_activation_url));
   });
 
@@ -112,7 +112,7 @@ describe('Shopify#customer', () => {
       .post('/admin/customers/207119551/send_invite.json', input)
       .reply(201, output);
 
-    return shopify.customer.sendInvite(207119551, input.customer_invite)
+    return redhio.customer.sendInvite(207119551, input.customer_invite)
       .then(data => expect(data).to.deep.equal(output.customer_invite));
   });
 
@@ -124,7 +124,7 @@ describe('Shopify#customer', () => {
       .post('/admin/customers/207119551/send_invite.json', input)
       .reply(201, output);
 
-    return shopify.customer.sendInvite(207119551)
+    return redhio.customer.sendInvite(207119551)
       .then(data => expect(data).to.deep.equal(output.customer_invite));
   });
 
@@ -133,7 +133,7 @@ describe('Shopify#customer', () => {
       .delete('/admin/customers/207119551.json')
       .reply(200, {});
 
-    return shopify.customer.delete(207119551)
+    return redhio.customer.delete(207119551)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -142,7 +142,7 @@ describe('Shopify#customer', () => {
       .get('/admin/customers/count.json')
       .reply(200, { count: 1 });
 
-    return shopify.customer.count()
+    return redhio.customer.count()
       .then(data => expect(data).to.equal(1));
   });
 
@@ -153,7 +153,7 @@ describe('Shopify#customer', () => {
       .get('/admin/customers/207119551/orders.json')
       .reply(200, output);
 
-    return shopify.customer.orders(207119551)
+    return redhio.customer.orders(207119551)
       .then(data => expect(data).to.deep.equal(output.orders));
   });
 });

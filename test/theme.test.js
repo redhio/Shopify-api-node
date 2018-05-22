@@ -1,4 +1,4 @@
-describe('Shopify#theme', () => {
+describe('Redhio#theme', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#theme', () => {
   const fixtures = require('./fixtures/theme');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#theme', () => {
       .get('/admin/themes.json')
       .reply(200, output);
 
-    return shopify.theme.list()
+    return redhio.theme.list()
       .then(data => expect(data).to.deep.equal(output.themes));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#theme', () => {
       .get('/admin/themes.json?foo=bar')
       .reply(200, output);
 
-    return shopify.theme.list({ foo: 'bar' })
+    return redhio.theme.list({ foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.themes));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#theme', () => {
       .get('/admin/themes/828155753.json')
       .reply(200, output);
 
-    return shopify.theme.get(828155753)
+    return redhio.theme.get(828155753)
       .then(data => expect(data).to.deep.equal(output.theme));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#theme', () => {
       .get('/admin/themes/828155753.json?foo=bar')
       .reply(200, output);
 
-    return shopify.theme.get(828155753, { foo: 'bar' })
+    return redhio.theme.get(828155753, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.theme));
   });
 
@@ -63,7 +63,7 @@ describe('Shopify#theme', () => {
       .post('/admin/themes.json', input)
       .reply(201, output);
 
-    return shopify.theme.create(input.theme)
+    return redhio.theme.create(input.theme)
       .then(data => expect(data).to.deep.equal(output.theme));
   });
 
@@ -75,7 +75,7 @@ describe('Shopify#theme', () => {
       .put('/admin/themes/752253240.json', input)
       .reply(200, output);
 
-    return shopify.theme.update(752253240, input.theme)
+    return redhio.theme.update(752253240, input.theme)
       .then(data => expect(data).to.deep.equal(output.theme));
   });
 
@@ -84,7 +84,7 @@ describe('Shopify#theme', () => {
       .delete('/admin/themes/752253240.json')
       .reply(200, {});
 
-    return shopify.theme.delete(752253240)
+    return redhio.theme.delete(752253240)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

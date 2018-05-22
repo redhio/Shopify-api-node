@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a FulfillmentService instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function FulfillmentService(shopify) {
-  this.shopify = shopify;
+function FulfillmentService(redhio) {
+  this.redhio = redhio;
 
   this.name = 'fulfillment_services';
   this.key = 'fulfillment_service';

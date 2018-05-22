@@ -7,12 +7,12 @@ const baseChild = require('../mixins/base-child');
 /**
  * Creates a ProductImage instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function ProductImage(shopify) {
-  this.shopify = shopify;
+function ProductImage(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'products';
   this.name = 'images';

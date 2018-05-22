@@ -1,4 +1,4 @@
-describe('Shopify#giftCard', () => {
+describe('Redhio#giftCard', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#giftCard', () => {
   const fixtures = require('./fixtures/gift-card');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#giftCard', () => {
       .get('/admin/gift_cards.json')
       .reply(200, output);
 
-    return shopify.giftCard.list()
+    return redhio.giftCard.list()
       .then(data => expect(data).to.deep.equal(output.gift_cards));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#giftCard', () => {
       .get('/admin/gift_cards.json?status=enabled')
       .reply(200, output);
 
-    return shopify.giftCard.list({ status: 'enabled' })
+    return redhio.giftCard.list({ status: 'enabled' })
       .then(data => expect(data).to.deep.equal(output.gift_cards));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#giftCard', () => {
       .get('/admin/gift_cards/48394658.json')
       .reply(200, output);
 
-    return shopify.giftCard.get(48394658)
+    return redhio.giftCard.get(48394658)
       .then(data => expect(data).to.deep.equal(output.gift_card));
   });
 
@@ -49,7 +49,7 @@ describe('Shopify#giftCard', () => {
       .get('/admin/gift_cards/count.json')
       .reply(200, { count: 2 });
 
-    return shopify.giftCard.count()
+    return redhio.giftCard.count()
       .then(data => expect(data).to.equal(2));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#giftCard', () => {
       .get('/admin/gift_cards/count.json?status=enabled')
       .reply(200, { count: 2 });
 
-    return shopify.giftCard.count({ status: 'enabled' })
+    return redhio.giftCard.count({ status: 'enabled' })
       .then(data => expect(data).to.equal(2));
   });
 
@@ -70,7 +70,7 @@ describe('Shopify#giftCard', () => {
       .post('/admin/gift_cards.json', input)
       .reply(201, output);
 
-    return shopify.giftCard.create(input.gift_card)
+    return redhio.giftCard.create(input.gift_card)
       .then(data => expect(data).to.deep.equal(output.gift_card));
   });
 
@@ -82,7 +82,7 @@ describe('Shopify#giftCard', () => {
       .put('/admin/gift_cards/48394658.json', input)
       .reply(200, output);
 
-    return shopify.giftCard.update(48394658, input.gift_card)
+    return redhio.giftCard.update(48394658, input.gift_card)
       .then(data => expect(data).to.deep.equal(output.gift_card));
   });
 
@@ -94,7 +94,7 @@ describe('Shopify#giftCard', () => {
       .post('/admin/gift_cards/48394658/disable.json', input)
       .reply(201, output);
 
-    return shopify.giftCard.disable(48394658)
+    return redhio.giftCard.disable(48394658)
       .then(data => expect(data).to.deep.equal(output.gift_card));
   });
 
@@ -105,7 +105,7 @@ describe('Shopify#giftCard', () => {
       .get('/admin/gift_cards/search.json?query=Bob')
       .reply(200, output);
 
-    return shopify.giftCard.search({ query: 'Bob' })
+    return redhio.giftCard.search({ query: 'Bob' })
       .then(data => expect(data).to.deep.equal(output.gift_cards));
   });
 });

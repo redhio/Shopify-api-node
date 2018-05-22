@@ -1,4 +1,4 @@
-describe('Shopify#order', () => {
+describe('Redhio#order', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#order', () => {
   const fixtures = require('./fixtures/order');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#order', () => {
       .get('/admin/orders.json')
       .reply(200, output);
 
-    return shopify.order.list()
+    return redhio.order.list()
       .then(data => expect(data).to.deep.equal(output.orders));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#order', () => {
       .get('/admin/orders.json?page=1')
       .reply(200, output);
 
-    return shopify.order.list({ page: 1 })
+    return redhio.order.list({ page: 1 })
       .then(data => expect(data).to.deep.equal(output.orders));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#order', () => {
       .get('/admin/orders/450789469.json')
       .reply(200, output);
 
-    return shopify.order.get(450789469)
+    return redhio.order.get(450789469)
       .then(data => expect(data).to.deep.equal(output.order));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#order', () => {
       .get('/admin/orders/450789469.json?foo=bar')
       .reply(200, output);
 
-    return shopify.order.get(450789469, { foo: 'bar' })
+    return redhio.order.get(450789469, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.order));
   });
 
@@ -60,7 +60,7 @@ describe('Shopify#order', () => {
       .get('/admin/orders/count.json')
       .reply(200, { count: 1 });
 
-    return shopify.order.count()
+    return redhio.order.count()
       .then(data => expect(data).to.equal(1));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#order', () => {
       .get('/admin/orders/count.json?status=open')
       .reply(200, { count: 1 });
 
-    return shopify.order.count({ status: 'open' })
+    return redhio.order.count({ status: 'open' })
       .then(data => expect(data).to.equal(1));
   });
 
@@ -80,7 +80,7 @@ describe('Shopify#order', () => {
       .post('/admin/orders/450789469/close.json')
       .reply(200, output);
 
-    return shopify.order.close(450789469)
+    return redhio.order.close(450789469)
       .then(data => expect(data).to.deep.equal(output.order));
   });
 
@@ -91,7 +91,7 @@ describe('Shopify#order', () => {
       .post('/admin/orders/450789469/open.json')
       .reply(200, output);
 
-    return shopify.order.open(450789469)
+    return redhio.order.open(450789469)
       .then(data => expect(data).to.deep.equal(output.order));
   });
 
@@ -102,7 +102,7 @@ describe('Shopify#order', () => {
       .post('/admin/orders/450789469/cancel.json')
       .reply(200, output);
 
-    return shopify.order.cancel(450789469)
+    return redhio.order.cancel(450789469)
       .then(data => expect(data).to.deep.equal(output.order));
   });
 
@@ -114,7 +114,7 @@ describe('Shopify#order', () => {
       .post('/admin/orders/450789469/cancel.json', input)
       .reply(200, output);
 
-    return shopify.order.cancel(450789469, input)
+    return redhio.order.cancel(450789469, input)
       .then(data => expect(data).to.deep.equal(output.order));
   });
 
@@ -126,7 +126,7 @@ describe('Shopify#order', () => {
       .post('/admin/orders.json', input)
       .reply(201, output);
 
-    return shopify.order.create(input.order)
+    return redhio.order.create(input.order)
       .then(data => expect(data).to.deep.equal(output.order));
   });
 
@@ -138,7 +138,7 @@ describe('Shopify#order', () => {
       .put('/admin/orders/450789469.json', input)
       .reply(200, output);
 
-    return shopify.order.update(450789469, input.order)
+    return redhio.order.update(450789469, input.order)
       .then(data => expect(data).to.deep.equal(output.order));
   });
 
@@ -147,7 +147,7 @@ describe('Shopify#order', () => {
       .delete('/admin/orders/450789469.json')
       .reply(200, {});
 
-    return shopify.order.delete(450789469)
+    return redhio.order.delete(450789469)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

@@ -1,4 +1,4 @@
-describe('Shopify#carrierService', () => {
+describe('Redhio#carrierService', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#carrierService', () => {
   const fixtures = require('./fixtures/carrier-service');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#carrierService', () => {
       .post('/admin/carrier_services.json', input)
       .reply(201, output);
 
-    return shopify.carrierService.create(input.carrier_service)
+    return redhio.carrierService.create(input.carrier_service)
       .then(data => expect(data).to.deep.equal(output.carrier_service));
   });
 
@@ -31,7 +31,7 @@ describe('Shopify#carrierService', () => {
       .put('/admin/carrier_services/962683579.json', input)
       .reply(200, output);
 
-    return shopify.carrierService.update(962683579, input.carrier_service)
+    return redhio.carrierService.update(962683579, input.carrier_service)
       .then(data => expect(data).to.deep.equal(output.carrier_service));
   });
 
@@ -42,7 +42,7 @@ describe('Shopify#carrierService', () => {
       .get('/admin/carrier_services.json')
       .reply(200, output);
 
-    return shopify.carrierService.list()
+    return redhio.carrierService.list()
       .then(data => expect(data).to.deep.equal(output.carrier_services));
   });
 
@@ -53,7 +53,7 @@ describe('Shopify#carrierService', () => {
       .get('/admin/carrier_services/962683576.json')
       .reply(200, output);
 
-    return shopify.carrierService.get(962683576)
+    return redhio.carrierService.get(962683576)
       .then(data => expect(data).to.deep.equal(output.carrier_service));
   });
 
@@ -62,7 +62,7 @@ describe('Shopify#carrierService', () => {
       .delete('/admin/carrier_services/962683575.json')
       .reply(200, {});
 
-    return shopify.carrierService.delete(962683575)
+    return redhio.carrierService.delete(962683575)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

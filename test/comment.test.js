@@ -1,4 +1,4 @@
-describe('Shopify#comment', () => {
+describe('Redhio#comment', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#comment', () => {
   const fixtures = require('./fixtures/comment');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#comment', () => {
       .get('/admin/comments.json')
       .reply(200, output);
 
-    return shopify.comment.list()
+    return redhio.comment.list()
       .then(data => expect(data).to.deep.equal(output.comments));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#comment', () => {
       .get('/admin/comments.json?blog_id=241253187')
       .reply(200, output);
 
-    return shopify.comment.list({ blog_id: 241253187 })
+    return redhio.comment.list({ blog_id: 241253187 })
       .then(data => expect(data).to.deep.equal(output.comments));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#comment', () => {
       .get('/admin/comments/count.json')
       .reply(200, { count: 2 });
 
-    return shopify.comment.count()
+    return redhio.comment.count()
       .then(data => expect(data).to.equal(2));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#comment', () => {
       .get('/admin/comments/count.json?blog_id=241253187')
       .reply(200, { count: 2 });
 
-    return shopify.comment.count({ blog_id: 241253187 })
+    return redhio.comment.count({ blog_id: 241253187 })
       .then(data => expect(data).to.equal(2));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#comment', () => {
       .get('/admin/comments/118373535.json')
       .reply(200, output);
 
-    return shopify.comment.get(118373535)
+    return redhio.comment.get(118373535)
       .then(data => expect(data).to.deep.equal(output.comment));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#comment', () => {
       .get('/admin/comments/118373535.json?foo=bar')
       .reply(200, output);
 
-    return shopify.comment.get(118373535, { foo: 'bar' })
+    return redhio.comment.get(118373535, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.comment));
   });
 
@@ -81,7 +81,7 @@ describe('Shopify#comment', () => {
       .post('/admin/comments.json', input)
       .reply(201, output);
 
-    return shopify.comment.create(input.comment)
+    return redhio.comment.create(input.comment)
       .then(data => expect(data).to.deep.equal(output.comment));
   });
 
@@ -93,7 +93,7 @@ describe('Shopify#comment', () => {
       .put('/admin/comments/118373535.json', input)
       .reply(200, output);
 
-    return shopify.comment.update(118373535, input.comment)
+    return redhio.comment.update(118373535, input.comment)
       .then(data => expect(data).to.deep.equal(output.comment));
   });
 
@@ -104,7 +104,7 @@ describe('Shopify#comment', () => {
       .post('/admin/comments/653537639/spam.json', {})
       .reply(200, output);
 
-    return shopify.comment.spam(653537639)
+    return redhio.comment.spam(653537639)
       .then(data => expect(data).to.deep.equal(output));
   });
 
@@ -115,7 +115,7 @@ describe('Shopify#comment', () => {
       .post('/admin/comments/653537639/not_spam.json', {})
       .reply(200, output);
 
-    return shopify.comment.notSpam(653537639)
+    return redhio.comment.notSpam(653537639)
       .then(data => expect(data).to.deep.equal(output));
   });
 
@@ -126,7 +126,7 @@ describe('Shopify#comment', () => {
       .post('/admin/comments/653537639/approve.json', {})
       .reply(200, output);
 
-    return shopify.comment.approve(653537639)
+    return redhio.comment.approve(653537639)
       .then(data => expect(data).to.deep.equal(output));
   });
 
@@ -137,7 +137,7 @@ describe('Shopify#comment', () => {
       .post('/admin/comments/653537639/remove.json', {})
       .reply(200, output);
 
-    return shopify.comment.remove(653537639)
+    return redhio.comment.remove(653537639)
       .then(data => expect(data).to.deep.equal(output));
   });
 
@@ -148,7 +148,7 @@ describe('Shopify#comment', () => {
       .post('/admin/comments/653537639/restore.json', {})
       .reply(200, output);
 
-    return shopify.comment.restore(653537639)
+    return redhio.comment.restore(653537639)
       .then(data => expect(data).to.deep.equal(output));
   });
 });

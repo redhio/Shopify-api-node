@@ -1,4 +1,4 @@
-describe('Shopify#accessScope', () => {
+describe('Redhio#accessScope', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#accessScope', () => {
   const fixtures = require('./fixtures/access-scope');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#accessScope', () => {
       .get('/admin/oauth/access_scopes.json')
       .reply(200, output);
 
-    return shopify.accessScope.list()
+    return redhio.accessScope.list()
       .then(data => expect(data).to.deep.equal(output.access_scopes));
   });
 });

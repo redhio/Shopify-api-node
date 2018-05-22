@@ -1,4 +1,4 @@
-describe('Shopify#draftOrder', () => {
+describe('Redhio#draftOrder', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#draftOrder', () => {
   const fixtures = require('./fixtures/draft-order');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#draftOrder', () => {
       .get('/admin/draft_orders.json')
       .reply(200, output);
 
-    return shopify.draftOrder.list()
+    return redhio.draftOrder.list()
       .then(data => expect(data).to.deep.equal(output.draft_orders));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#draftOrder', () => {
       .get('/admin/draft_orders.json?since_id=58379909')
       .reply(200, output);
 
-    return shopify.draftOrder.list({ since_id: 58379909 })
+    return redhio.draftOrder.list({ since_id: 58379909 })
       .then(data => expect(data).to.deep.equal(output.draft_orders));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#draftOrder', () => {
       .get('/admin/draft_orders/count.json')
       .reply(200, output);
 
-    return shopify.draftOrder.count()
+    return redhio.draftOrder.count()
       .then(data => expect(data).to.equal(2));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#draftOrder', () => {
       .get('/admin/draft_orders/59743814.json')
       .reply(200, output);
 
-    return shopify.draftOrder.get(59743814)
+    return redhio.draftOrder.get(59743814)
       .then(data => expect(data).to.deep.equal(output.draft_order));
   });
 
@@ -62,7 +62,7 @@ describe('Shopify#draftOrder', () => {
       .get('/admin/draft_orders/59743814.json?foo=bar')
       .reply(200, output);
 
-    return shopify.draftOrder.get(59743814, { foo: 'bar' })
+    return redhio.draftOrder.get(59743814, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.draft_order));
   });
 
@@ -74,7 +74,7 @@ describe('Shopify#draftOrder', () => {
       .post('/admin/draft_orders.json', input)
       .reply(201, output);
 
-    return shopify.draftOrder.create(input.draft_order)
+    return redhio.draftOrder.create(input.draft_order)
       .then(data => expect(data).to.deep.equal(output.draft_order));
   });
 
@@ -86,7 +86,7 @@ describe('Shopify#draftOrder', () => {
       .put('/admin/draft_orders/59734918.json', input)
       .reply(200, output);
 
-    return shopify.draftOrder.update(59734918, input.draft_order)
+    return redhio.draftOrder.update(59734918, input.draft_order)
       .then(data => expect(data).to.deep.equal(output.draft_order));
   });
 
@@ -95,7 +95,7 @@ describe('Shopify#draftOrder', () => {
       .delete('/admin/draft_orders/59734918.json')
       .reply(200, {});
 
-    return shopify.draftOrder.delete(59734918)
+    return redhio.draftOrder.delete(59734918)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -106,7 +106,7 @@ describe('Shopify#draftOrder', () => {
       .put('/admin/draft_orders/59743814/complete.json?payment_pending=false')
       .reply(200, output);
 
-    return shopify.draftOrder.complete(59743814, { payment_pending: false })
+    return redhio.draftOrder.complete(59743814, { payment_pending: false })
       .then(data => expect(data).to.deep.equal(output.draft_order));
   });
 
@@ -118,7 +118,7 @@ describe('Shopify#draftOrder', () => {
       .post('/admin/draft_orders/59743814/send_invoice.json', input)
       .reply(201, output);
 
-    return shopify.draftOrder.sendInvoice(59743814, input.draft_order_invoice)
+    return redhio.draftOrder.sendInvoice(59743814, input.draft_order_invoice)
       .then(data => expect(data).to.deep.equal(output.draft_order_invoice));
   });
 });

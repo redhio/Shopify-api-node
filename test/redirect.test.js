@@ -1,4 +1,4 @@
-describe('Shopify#redirect', () => {
+describe('Redhio#redirect', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#redirect', () => {
   const fixtures = require('./fixtures/redirect');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#redirect', () => {
       .get('/admin/redirects.json')
       .reply(200, output);
 
-    return shopify.redirect.list()
+    return redhio.redirect.list()
       .then(data => expect(data).to.deep.equal(output.redirects));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#redirect', () => {
       .get('/admin/redirects.json?since_id=304339088')
       .reply(200, output);
 
-    return shopify.redirect.list({ since_id: 304339088 })
+    return redhio.redirect.list({ since_id: 304339088 })
       .then(data => expect(data).to.deep.equal(output.redirects));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#redirect', () => {
       .get('/admin/redirects/count.json')
       .reply(200, { count: 3 });
 
-    return shopify.redirect.count()
+    return redhio.redirect.count()
       .then(data => expect(data).to.equal(3));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#redirect', () => {
       .get('/admin/redirects/count.json?foo=bar')
       .reply(200, { count: 3 });
 
-    return shopify.redirect.count({ foo: 'bar' })
+    return redhio.redirect.count({ foo: 'bar' })
       .then(data => expect(data).to.equal(3));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#redirect', () => {
       .get('/admin/redirects/668809255.json')
       .reply(200, output);
 
-    return shopify.redirect.get(668809255)
+    return redhio.redirect.get(668809255)
       .then(data => expect(data).to.deep.equal(output.redirect));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#redirect', () => {
       .get('/admin/redirects/668809255.json?foo=bar')
       .reply(200, output);
 
-    return shopify.redirect.get(668809255, { foo: 'bar' })
+    return redhio.redirect.get(668809255, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.redirect));
   });
 
@@ -81,7 +81,7 @@ describe('Shopify#redirect', () => {
       .post('/admin/redirects.json', input)
       .reply(201, output);
 
-    return shopify.redirect.create(input.redirect)
+    return redhio.redirect.create(input.redirect)
       .then(data => expect(data).to.deep.equal(output.redirect));
   });
 
@@ -93,7 +93,7 @@ describe('Shopify#redirect', () => {
       .put('/admin/redirects/668809255.json', input)
       .reply(200, output);
 
-    return shopify.redirect.update(668809255, input.redirect)
+    return redhio.redirect.update(668809255, input.redirect)
       .then(data => expect(data).to.deep.equal(output.redirect));
   });
 
@@ -102,7 +102,7 @@ describe('Shopify#redirect', () => {
       .delete('/admin/redirects/668809255.json')
       .reply(200, {});
 
-    return shopify.redirect.delete(668809255)
+    return redhio.redirect.delete(668809255)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

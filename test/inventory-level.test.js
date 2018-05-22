@@ -1,4 +1,4 @@
-describe('Shopify#inventoryLevel', () => {
+describe('Redhio#inventoryLevel', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -7,7 +7,7 @@ describe('Shopify#inventoryLevel', () => {
   const fixtures = require('./fixtures/inventory-level');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -20,7 +20,7 @@ describe('Shopify#inventoryLevel', () => {
       .get('/admin/inventory_levels.json?' + qs.stringify(query))
       .reply(200, output);
 
-    return shopify.inventoryLevel.list(query)
+    return redhio.inventoryLevel.list(query)
       .then(data => expect(data).to.deep.equal(output.inventory_levels));
   });
 
@@ -32,7 +32,7 @@ describe('Shopify#inventoryLevel', () => {
       .post('/admin/inventory_levels/adjust.json', input)
       .reply(200, output);
 
-    return shopify.inventoryLevel.adjust(input)
+    return redhio.inventoryLevel.adjust(input)
       .then(data => expect(data).to.deep.equal(output.inventory_level));
   });
 
@@ -46,7 +46,7 @@ describe('Shopify#inventoryLevel', () => {
       .delete('/admin/inventory_levels.json?' + qs.stringify(query))
       .reply(204);
 
-    return shopify.inventoryLevel.delete(query)
+    return redhio.inventoryLevel.delete(query)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#inventoryLevel', () => {
       .post('/admin/inventory_levels/connect.json', input)
       .reply(201, output);
 
-    return shopify.inventoryLevel.connect(input)
+    return redhio.inventoryLevel.connect(input)
       .then(data => expect(data).to.deep.equal(output.inventory_level));
   });
 
@@ -70,7 +70,7 @@ describe('Shopify#inventoryLevel', () => {
       .post('/admin/inventory_levels/set.json', input)
       .reply(200, output);
 
-    return shopify.inventoryLevel.set(input)
+    return redhio.inventoryLevel.set(input)
       .then(data => expect(data).to.deep.equal(output.inventory_level));
   });
 });

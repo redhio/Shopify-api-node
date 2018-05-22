@@ -8,12 +8,12 @@ const baseChild = require('../mixins/base-child');
 /**
  * Creates a Fulfillment instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Fulfillment(shopify) {
-  this.shopify = shopify;
+function Fulfillment(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'orders';
   this.name = 'fulfillments';
@@ -32,7 +32,7 @@ assign(Fulfillment.prototype, omit(baseChild, ['delete']));
  */
 Fulfillment.prototype.complete = function complete(orderId, id) {
   const url = this.buildUrl(orderId, `${id}/complete`);
-  return this.shopify.request(url, 'POST', undefined, {})
+  return this.redhio.request(url, 'POST', undefined, {})
     .then(body => body[this.key]);
 };
 
@@ -46,7 +46,7 @@ Fulfillment.prototype.complete = function complete(orderId, id) {
  */
 Fulfillment.prototype.open = function open(orderId, id) {
   const url = this.buildUrl(orderId, `${id}/open`);
-  return this.shopify.request(url, 'POST', undefined, {})
+  return this.redhio.request(url, 'POST', undefined, {})
     .then(body => body[this.key]);
 };
 
@@ -60,7 +60,7 @@ Fulfillment.prototype.open = function open(orderId, id) {
  */
 Fulfillment.prototype.cancel = function cancel(orderId, id) {
   const url = this.buildUrl(orderId, `${id}/cancel`);
-  return this.shopify.request(url, 'POST', undefined, {})
+  return this.redhio.request(url, 'POST', undefined, {})
     .then(body => body[this.key]);
 };
 

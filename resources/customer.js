@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Customer instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Customer(shopify) {
-  this.shopify = shopify;
+function Customer(redhio) {
+  this.redhio = redhio;
 
   this.name = 'customers';
   this.key = 'customer';
@@ -29,7 +29,7 @@ assign(Customer.prototype, base);
  */
 Customer.prototype.search = function search(params) {
   const url = this.buildUrl('search', params);
-  return this.shopify.request(url, 'GET', this.name);
+  return this.redhio.request(url, 'GET', this.name);
 };
 
 /**
@@ -41,7 +41,7 @@ Customer.prototype.search = function search(params) {
  */
 Customer.prototype.accountActivationUrl = function accountActivationUrl(id) {
   const url = this.buildUrl(`${id}/account_activation_url`);
-  return this.shopify.request(url, 'POST', undefined, {
+  return this.redhio.request(url, 'POST', undefined, {
     customer: { id }
   }).then(body => body.account_activation_url);
 };
@@ -56,7 +56,7 @@ Customer.prototype.accountActivationUrl = function accountActivationUrl(id) {
  */
 Customer.prototype.sendInvite = function sendInvite(id, params) {
   const url = this.buildUrl(`${id}/send_invite`);
-  return this.shopify.request(url, 'POST', 'customer_invite', params || {});
+  return this.redhio.request(url, 'POST', 'customer_invite', params || {});
 };
 
 /**
@@ -68,7 +68,7 @@ Customer.prototype.sendInvite = function sendInvite(id, params) {
  */
 Customer.prototype.orders = function orders(id) {
   const url = this.buildUrl(`${id}/orders`);
-  return this.shopify.request(url, 'GET', 'orders');
+  return this.redhio.request(url, 'GET', 'orders');
 };
 
 module.exports = Customer;

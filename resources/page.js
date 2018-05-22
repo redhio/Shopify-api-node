@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Page instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Page(shopify) {
-  this.shopify = shopify;
+function Page(redhio) {
+  this.redhio = redhio;
 
   this.name = 'pages';
   this.key = 'page';

@@ -1,4 +1,4 @@
-describe('Shopify#applicationCharge', () => {
+describe('Redhio#applicationCharge', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#applicationCharge', () => {
   const fixtures = require('./fixtures/application-charge');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#applicationCharge', () => {
       .post('/admin/application_charges.json', input)
       .reply(201, output);
 
-    return shopify.applicationCharge.create(input.application_charge)
+    return redhio.applicationCharge.create(input.application_charge)
       .then(data => expect(data).to.deep.equal(output.application_charge));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#applicationCharge', () => {
       .get('/admin/application_charges/675931192.json')
       .reply(200, output);
 
-    return shopify.applicationCharge.get(675931192)
+    return redhio.applicationCharge.get(675931192)
       .then(data => expect(data).to.deep.equal(output.application_charge));
   });
 
@@ -41,7 +41,7 @@ describe('Shopify#applicationCharge', () => {
       .get('/admin/application_charges/675931192.json?foo=bar')
       .reply(200, output);
 
-    return shopify.applicationCharge.get(675931192, { foo: 'bar' })
+    return redhio.applicationCharge.get(675931192, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.application_charge));
   });
 
@@ -52,7 +52,7 @@ describe('Shopify#applicationCharge', () => {
       .get('/admin/application_charges.json')
       .reply(200, output);
 
-    return shopify.applicationCharge.list()
+    return redhio.applicationCharge.list()
       .then(data => expect(data).to.deep.equal(output.application_charges));
   });
 
@@ -63,7 +63,7 @@ describe('Shopify#applicationCharge', () => {
       .get('/admin/application_charges.json?since_id=556467233')
       .reply(200, output);
 
-    return shopify.applicationCharge.list({ since_id: 556467233 })
+    return redhio.applicationCharge.list({ since_id: 556467233 })
       .then(data => expect(data).to.deep.equal(output.application_charges));
   });
 
@@ -76,7 +76,7 @@ describe('Shopify#applicationCharge', () => {
       .post(`/admin/application_charges/${id}/activate.json`, input)
       .reply(200, output);
 
-    return shopify.applicationCharge.activate(id, input.application_charge)
+    return redhio.applicationCharge.activate(id, input.application_charge)
       .then(data => expect(data).to.deep.equal(output.application_charge));
   });
 });

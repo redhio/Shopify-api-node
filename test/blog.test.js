@@ -1,4 +1,4 @@
-describe('Shopify#blog', () => {
+describe('Redhio#blog', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#blog', () => {
   const fixtures = require('./fixtures/blog');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#blog', () => {
       .get('/admin/blogs.json')
       .reply(200, output);
 
-    return shopify.blog.list()
+    return redhio.blog.list()
       .then(data => expect(data).to.deep.equal(output.blogs));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#blog', () => {
       .get('/admin/blogs.json?since_id=241253186')
       .reply(200, output);
 
-    return shopify.blog.list({ since_id: 241253186 })
+    return redhio.blog.list({ since_id: 241253186 })
       .then(data => expect(data).to.deep.equal(output.blogs));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#blog', () => {
       .get('/admin/blogs/count.json')
       .reply(200, output);
 
-    return shopify.blog.count()
+    return redhio.blog.count()
       .then(data => expect(data).to.equal(2));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#blog', () => {
       .get('/admin/blogs/241253187.json')
       .reply(200, output);
 
-    return shopify.blog.get(241253187)
+    return redhio.blog.get(241253187)
       .then(data => expect(data).to.deep.equal(output.blog));
   });
 
@@ -62,7 +62,7 @@ describe('Shopify#blog', () => {
       .get('/admin/blogs/241253187.json?foo=bar')
       .reply(200, output);
 
-    return shopify.blog.get(241253187, { foo: 'bar' })
+    return redhio.blog.get(241253187, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.blog));
   });
 
@@ -74,7 +74,7 @@ describe('Shopify#blog', () => {
       .post('/admin/blogs.json', input)
       .reply(201, output);
 
-    return shopify.blog.create(input.blog)
+    return redhio.blog.create(input.blog)
       .then(data => expect(data).to.deep.equal(output.blog));
   });
 
@@ -86,7 +86,7 @@ describe('Shopify#blog', () => {
       .put('/admin/blogs/241253187.json', input)
       .reply(200, output);
 
-    return shopify.blog.update(241253187, input.blog)
+    return redhio.blog.update(241253187, input.blog)
       .then(data => expect(data).to.deep.equal(output.blog));
   });
 
@@ -95,7 +95,7 @@ describe('Shopify#blog', () => {
       .delete('/admin/blogs/241253187.json')
       .reply(200, {});
 
-    return shopify.blog.delete(241253187)
+    return redhio.blog.delete(241253187)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

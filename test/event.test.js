@@ -1,4 +1,4 @@
-describe('Shopify#event', () => {
+describe('Redhio#event', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#event', () => {
   const fixtures = require('./fixtures/event');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#event', () => {
       .get('/admin/events.json')
       .reply(200, output);
 
-    return shopify.event.list()
+    return redhio.event.list()
       .then(data => expect(data).to.deep.equal(output.events));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#event', () => {
       .get('/admin/events.json?page=1')
       .reply(200, output);
 
-    return shopify.event.list({ page: 1 })
+    return redhio.event.list({ page: 1 })
       .then(data => expect(data).to.deep.equal(output.events));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#event', () => {
       .get('/admin/events/count.json')
       .reply(200, { count: 3 });
 
-    return shopify.event.count()
+    return redhio.event.count()
       .then(data => expect(data).to.deep.equal(3));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#event', () => {
       .get('/admin/events/count.json?foo=bar')
       .reply(200, { count: 3 });
 
-    return shopify.event.count({ foo: 'bar' })
+    return redhio.event.count({ foo: 'bar' })
       .then(data => expect(data).to.deep.equal(3));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#event', () => {
       .get('/admin/events/677313116.json')
       .reply(200, output);
 
-    return shopify.event.get(677313116)
+    return redhio.event.get(677313116)
       .then(data => expect(data).to.deep.equal(output.event));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#event', () => {
       .get('/admin/events/677313116.json?foo=bar')
       .reply(200, output);
 
-    return shopify.event.get(677313116, { foo: 'bar' })
+    return redhio.event.get(677313116, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.event));
   });
 });

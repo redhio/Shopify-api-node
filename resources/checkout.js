@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Checkout instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Checkout(shopify) {
-  this.shopify = shopify;
+function Checkout(redhio) {
+  this.redhio = redhio;
 
   this.name = 'checkouts';
   this.key = 'checkout';
@@ -30,7 +30,7 @@ assign(Checkout.prototype, omit(base, 'delete'));
  */
 Checkout.prototype.complete = function complete(token) {
   const url = this.buildUrl(`${token}/complete`);
-  return this.shopify.request(url, 'POST', undefined, {})
+  return this.redhio.request(url, 'POST', undefined, {})
     .then(body => body[this.key]);
 };
 
@@ -43,7 +43,7 @@ Checkout.prototype.complete = function complete(token) {
  */
 Checkout.prototype.shippingRates = function shippingRates(token) {
   const url = this.buildUrl(`${token}/shipping_rates`);
-  return this.shopify.request(url, 'GET', 'shipping_rates');
+  return this.redhio.request(url, 'GET', 'shipping_rates');
 };
 
 module.exports = Checkout;

@@ -8,12 +8,12 @@ const baseChild = require('../mixins/base-child');
 /**
  * Creates an Asset instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Asset(shopify) {
-  this.shopify = shopify;
+function Asset(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'themes';
   this.name = 'assets';
@@ -32,7 +32,7 @@ assign(Asset.prototype, pick(baseChild, ['list', 'buildUrl']));
  */
 Asset.prototype.get = function get(themeId, params) {
   const url = this.buildUrl(themeId, undefined, params);
-  return this.shopify.request(url, 'GET', this.key);
+  return this.redhio.request(url, 'GET', this.key);
 };
 
 /**
@@ -45,7 +45,7 @@ Asset.prototype.get = function get(themeId, params) {
  */
 Asset.prototype.create = function create(themeId, params) {
   const url = this.buildUrl(themeId);
-  return this.shopify.request(url, 'PUT', this.key, params);
+  return this.redhio.request(url, 'PUT', this.key, params);
 };
 
 /**
@@ -68,7 +68,7 @@ Asset.prototype.update = Asset.prototype.create;
  */
 Asset.prototype.delete = function remove(themeId, params) {
   const url = this.buildUrl(themeId, undefined, params);
-  return this.shopify.request(url, 'DELETE');
+  return this.redhio.request(url, 'DELETE');
 };
 
 module.exports = Asset;

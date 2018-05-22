@@ -1,4 +1,4 @@
-describe('Shopify#usageCharge', () => {
+describe('Redhio#usageCharge', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -7,7 +7,7 @@ describe('Shopify#usageCharge', () => {
   const common = require('./common');
 
   const parent = 'recurring_application_charges';
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -20,7 +20,7 @@ describe('Shopify#usageCharge', () => {
       .post(`/admin/${parent}/455696195/usage_charges.json`, input)
       .reply(201, output);
 
-    return shopify.usageCharge.create(455696195, input.usage_charge)
+    return redhio.usageCharge.create(455696195, input.usage_charge)
       .then(data => expect(data).to.deep.equal(output.usage_charge));
   });
 
@@ -31,7 +31,7 @@ describe('Shopify#usageCharge', () => {
       .get(`/admin/${parent}/455696195/usage_charges/329049015.json`)
       .reply(200, output);
 
-    return shopify.usageCharge.get(455696195, 329049015)
+    return redhio.usageCharge.get(455696195, 329049015)
       .then(data => expect(data).to.deep.equal(output.usage_charge));
   });
 
@@ -42,7 +42,7 @@ describe('Shopify#usageCharge', () => {
       .get(`/admin/${parent}/455696195/usage_charges/329049015.json?foo=bar`)
       .reply(200, output);
 
-    return shopify.usageCharge.get(455696195, 329049015, { foo: 'bar' })
+    return redhio.usageCharge.get(455696195, 329049015, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.usage_charge));
   });
 
@@ -53,7 +53,7 @@ describe('Shopify#usageCharge', () => {
       .get(`/admin/${parent}/455696195/usage_charges.json`)
       .reply(200, output);
 
-    return shopify.usageCharge.list(455696195)
+    return redhio.usageCharge.list(455696195)
       .then(data => expect(data).to.deep.equal(output.usage_charges));
   });
 
@@ -64,7 +64,7 @@ describe('Shopify#usageCharge', () => {
       .get(`/admin/${parent}/455696195/usage_charges.json?foo=bar`)
       .reply(200, output);
 
-    return shopify.usageCharge.list(455696195, { foo: 'bar' })
+    return redhio.usageCharge.list(455696195, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.usage_charges));
   });
 });

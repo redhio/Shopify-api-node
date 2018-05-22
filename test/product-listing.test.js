@@ -1,4 +1,4 @@
-describe('Shopify#productListing', () => {
+describe('Redhio#productListing', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#productListing', () => {
   const fixtures = require('./fixtures/product-listing');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#productListing', () => {
       .get('/admin/product_listings.json')
       .reply(200, output);
 
-    return shopify.productListing.list()
+    return redhio.productListing.list()
       .then(data => expect(data).to.deep.equal(output.product_listings));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#productListing', () => {
       .get('/admin/product_listings.json?page=1')
       .reply(200, output);
 
-    return shopify.productListing.list({ page: 1 })
+    return redhio.productListing.list({ page: 1 })
       .then(data => expect(data).to.deep.equal(output.product_listings));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#productListing', () => {
       .get('/admin/product_listings/product_ids.json')
       .reply(200, output);
 
-    return shopify.productListing.productIds()
+    return redhio.productListing.productIds()
       .then(data => expect(data).to.deep.equal(output.product_ids));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#productListing', () => {
       .get('/admin/product_listings/product_ids.json?page=1')
       .reply(200, output);
 
-    return shopify.productListing.productIds({ page: 1 })
+    return redhio.productListing.productIds({ page: 1 })
       .then(data => expect(data).to.deep.equal(output.product_ids));
   });
 
@@ -60,7 +60,7 @@ describe('Shopify#productListing', () => {
       .get('/admin/product_listings/count.json')
       .reply(200, { count: 2 });
 
-    return shopify.productListing.count()
+    return redhio.productListing.count()
       .then(data => expect(data).to.equal(2));
   });
 
@@ -71,7 +71,7 @@ describe('Shopify#productListing', () => {
       .get('/admin/product_listings/921728736.json')
       .reply(200, output);
 
-    return shopify.productListing.get(921728736)
+    return redhio.productListing.get(921728736)
       .then(data => expect(data).to.deep.equal(output.product_listing));
   });
 
@@ -83,7 +83,7 @@ describe('Shopify#productListing', () => {
       .put('/admin/product_listings/921728736.json', input)
       .reply(200, output);
 
-    return shopify.productListing.create(921728736)
+    return redhio.productListing.create(921728736)
       .then(data => expect(data).to.deep.equal(output.product_listing));
   });
 
@@ -95,7 +95,7 @@ describe('Shopify#productListing', () => {
       .put('/admin/product_listings/921728736.json', input)
       .reply(200, output);
 
-    return shopify.productListing.create(921728736, input.product_listing)
+    return redhio.productListing.create(921728736, input.product_listing)
       .then(data => expect(data).to.deep.equal(output.product_listing));
   });
 
@@ -104,7 +104,7 @@ describe('Shopify#productListing', () => {
       .delete('/admin/product_listings/921728736.json')
       .reply(200);
 
-    return shopify.productListing.delete(921728736)
+    return redhio.productListing.delete(921728736)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

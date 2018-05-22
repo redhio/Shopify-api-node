@@ -1,4 +1,4 @@
-describe('Shopify#collect', () => {
+describe('Redhio#collect', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#collect', () => {
   const fixtures = require('./fixtures/collect');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#collect', () => {
       .post('/admin/collects.json', input)
       .reply(201, output);
 
-    return shopify.collect.create(input.collect)
+    return redhio.collect.create(input.collect)
       .then(data => expect(data).to.deep.equal(output.collect));
   });
 
@@ -28,7 +28,7 @@ describe('Shopify#collect', () => {
       .delete('/admin/collects/841564295.json')
       .reply(200, {});
 
-    return shopify.collect.delete(841564295)
+    return redhio.collect.delete(841564295)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -39,7 +39,7 @@ describe('Shopify#collect', () => {
       .get('/admin/collects.json')
       .reply(200, output);
 
-    return shopify.collect.list()
+    return redhio.collect.list()
       .then(data => expect(data).to.deep.equal(output.collects));
   });
 
@@ -50,7 +50,7 @@ describe('Shopify#collect', () => {
       .get('/admin/collects.json?page=1')
       .reply(200, output);
 
-    return shopify.collect.list({ page: 1 })
+    return redhio.collect.list({ page: 1 })
       .then(data => expect(data).to.deep.equal(output.collects));
   });
 
@@ -59,7 +59,7 @@ describe('Shopify#collect', () => {
       .get('/admin/collects/count.json')
       .reply(200, { count: 2 });
 
-    return shopify.collect.count()
+    return redhio.collect.count()
       .then(data => expect(data).to.equal(2));
   });
 
@@ -68,7 +68,7 @@ describe('Shopify#collect', () => {
       .get('/admin/collects/count.json?product_id=632910392')
       .reply(200, { count: 2 });
 
-    return shopify.collect.count({ product_id: 632910392 })
+    return redhio.collect.count({ product_id: 632910392 })
       .then(data => expect(data).to.equal(2));
   });
 
@@ -79,7 +79,7 @@ describe('Shopify#collect', () => {
       .get('/admin/collects/841564295.json')
       .reply(200, output);
 
-    return shopify.collect.get(841564295)
+    return redhio.collect.get(841564295)
       .then(data => expect(data).to.deep.equal(output.collect));
   });
 
@@ -90,7 +90,7 @@ describe('Shopify#collect', () => {
       .get('/admin/collects/841564295.json?foo=bar')
       .reply(200, output);
 
-    return shopify.collect.get(841564295, { foo: 'bar' })
+    return redhio.collect.get(841564295, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.collect));
   });
 });

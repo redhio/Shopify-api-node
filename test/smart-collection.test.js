@@ -1,4 +1,4 @@
-describe('Shopify#smartCollection', () => {
+describe('Redhio#smartCollection', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -7,7 +7,7 @@ describe('Shopify#smartCollection', () => {
   const fixtures = require('./fixtures/smart-collection');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#smartCollection', () => {
       .get('/admin/smart_collections.json')
       .reply(200, output);
 
-    return shopify.smartCollection.list()
+    return redhio.smartCollection.list()
       .then(data => expect(data).to.deep.equal(output.smart_collections));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#smartCollection', () => {
       .get('/admin/smart_collections.json?since_id=482865238')
       .reply(200, output);
 
-    return shopify.smartCollection.list({ since_id: 482865238 })
+    return redhio.smartCollection.list({ since_id: 482865238 })
       .then(data => expect(data).to.deep.equal(output.smart_collections));
   });
 
@@ -39,7 +39,7 @@ describe('Shopify#smartCollection', () => {
       .get('/admin/smart_collections/count.json')
       .reply(200, { count: 1 });
 
-    return shopify.smartCollection.count()
+    return redhio.smartCollection.count()
       .then(data => expect(data).to.equal(1));
   });
 
@@ -48,7 +48,7 @@ describe('Shopify#smartCollection', () => {
       .get('/admin/smart_collections/count.json?published_status=any')
       .reply(200, { count: 1 });
 
-    return shopify.smartCollection.count({ published_status: 'any' })
+    return redhio.smartCollection.count({ published_status: 'any' })
       .then(data => expect(data).to.equal(1));
   });
 
@@ -59,7 +59,7 @@ describe('Shopify#smartCollection', () => {
       .get('/admin/smart_collections/482865238.json')
       .reply(200, output);
 
-    return shopify.smartCollection.get(482865238)
+    return redhio.smartCollection.get(482865238)
       .then(data => expect(data).to.deep.equal(output.smart_collection));
   });
 
@@ -70,7 +70,7 @@ describe('Shopify#smartCollection', () => {
       .get('/admin/smart_collections/482865238.json?foo=bar')
       .reply(200, output);
 
-    return shopify.smartCollection.get( 482865238, { foo: 'bar' })
+    return redhio.smartCollection.get( 482865238, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.smart_collection));
   });
 
@@ -82,7 +82,7 @@ describe('Shopify#smartCollection', () => {
       .post('/admin/smart_collections.json', input)
       .reply(201, output);
 
-    return shopify.smartCollection.create(input.smart_collection)
+    return redhio.smartCollection.create(input.smart_collection)
       .then(data => expect(data).to.deep.equal(output.smart_collection));
   });
 
@@ -94,7 +94,7 @@ describe('Shopify#smartCollection', () => {
       .put('/admin/smart_collections/482865238.json', input)
       .reply(200, output);
 
-    return shopify.smartCollection.update(482865238, input.smart_collection)
+    return redhio.smartCollection.update(482865238, input.smart_collection)
       .then(data => expect(data).to.deep.equal(output.smart_collection));
   });
 
@@ -106,7 +106,7 @@ describe('Shopify#smartCollection', () => {
       .put('/admin/smart_collections/482865238/order.json' + search, {})
       .reply(200, {});
 
-    return shopify.smartCollection.order(482865238, query)
+    return redhio.smartCollection.order(482865238, query)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -118,7 +118,7 @@ describe('Shopify#smartCollection', () => {
       .put('/admin/smart_collections/482865238/order.json' + search, {})
       .reply(200, {});
 
-    return shopify.smartCollection.order(482865238, query)
+    return redhio.smartCollection.order(482865238, query)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -127,7 +127,7 @@ describe('Shopify#smartCollection', () => {
       .delete('/admin/smart_collections/482865238.json')
       .reply(200, {});
 
-    return shopify.smartCollection.delete(482865238)
+    return redhio.smartCollection.delete(482865238)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

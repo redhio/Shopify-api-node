@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Location instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Location(shopify) {
-  this.shopify = shopify;
+function Location(redhio) {
+  this.redhio = redhio;
 
   this.name = 'locations';
   this.key = 'location';

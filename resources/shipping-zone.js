@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a ShippingZone instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function ShippingZone(shopify) {
-  this.shopify = shopify;
+function ShippingZone(redhio) {
+  this.redhio = redhio;
 
   this.name = this.key = 'shipping_zones';
 }

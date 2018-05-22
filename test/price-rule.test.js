@@ -1,4 +1,4 @@
-describe('Shopify#priceRule', () => {
+describe('Redhio#priceRule', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#priceRule', () => {
   const fixtures = require('./fixtures/price-rule');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#priceRule', () => {
       .post('/admin/price_rules.json', input)
       .reply(201, output);
 
-    return shopify.priceRule.create(input.price_rule)
+    return redhio.priceRule.create(input.price_rule)
       .then(data => expect(data).to.deep.equal(output.price_rule));
   });
 
@@ -31,7 +31,7 @@ describe('Shopify#priceRule', () => {
       .put('/admin/price_rules/2762402181.json', input)
       .reply(200, output);
 
-    return shopify.priceRule.update(2762402181, input.price_rule)
+    return redhio.priceRule.update(2762402181, input.price_rule)
       .then(data => expect(data).to.deep.equal(output.price_rule));
   });
 
@@ -42,7 +42,7 @@ describe('Shopify#priceRule', () => {
       .get('/admin/price_rules.json')
       .reply(200, output);
 
-    return shopify.priceRule.list()
+    return redhio.priceRule.list()
       .then(data => expect(data).to.deep.equal(output.price_rules));
   });
 
@@ -53,7 +53,7 @@ describe('Shopify#priceRule', () => {
       .get('/admin/price_rules.json?limit=25')
       .reply(200, output);
 
-    return shopify.priceRule.list({ limit: 25 })
+    return redhio.priceRule.list({ limit: 25 })
       .then(data => expect(data).to.deep.equal(output.price_rules));
   });
 
@@ -64,7 +64,7 @@ describe('Shopify#priceRule', () => {
       .get('/admin/price_rules/2762402181.json')
       .reply(200, output);
 
-    return shopify.priceRule.get(2762402181)
+    return redhio.priceRule.get(2762402181)
       .then(data => expect(data).to.deep.equal(output.price_rule));
   });
 
@@ -73,7 +73,7 @@ describe('Shopify#priceRule', () => {
       .delete('/admin/price_rules/2762402181.json')
       .reply(200);
 
-    return shopify.priceRule.delete(2762402181)
+    return redhio.priceRule.delete(2762402181)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

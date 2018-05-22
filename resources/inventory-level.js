@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates an InventoryLevel instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function InventoryLevel(shopify) {
-  this.shopify = shopify;
+function InventoryLevel(redhio) {
+  this.redhio = redhio;
 
   this.name = 'inventory_levels';
   this.key = 'inventory_level';
@@ -30,7 +30,7 @@ assign(InventoryLevel.prototype, pick(base, ['list', 'buildUrl']));
  */
 InventoryLevel.prototype.adjust = function adjust(params) {
   const url = this.buildUrl('adjust');
-  return this.shopify.request(url, 'POST', undefined, params)
+  return this.redhio.request(url, 'POST', undefined, params)
     .then(body => body[this.key]);
 };
 
@@ -44,7 +44,7 @@ InventoryLevel.prototype.adjust = function adjust(params) {
  */
 InventoryLevel.prototype.connect = function connect(params) {
   const url = this.buildUrl('connect');
-  return this.shopify.request(url, 'POST', undefined, params)
+  return this.redhio.request(url, 'POST', undefined, params)
     .then(body => body[this.key]);
 };
 
@@ -57,7 +57,7 @@ InventoryLevel.prototype.connect = function connect(params) {
  */
 InventoryLevel.prototype.delete = function remove(params) {
   const url = this.buildUrl(undefined, params);
-  return this.shopify.request(url, 'DELETE');
+  return this.redhio.request(url, 'DELETE');
 };
 
 /**
@@ -69,7 +69,7 @@ InventoryLevel.prototype.delete = function remove(params) {
  */
 InventoryLevel.prototype.set = function set(params) {
   const url = this.buildUrl('set');
-  return this.shopify.request(url, 'POST', undefined, params)
+  return this.redhio.request(url, 'POST', undefined, params)
     .then(body => body[this.key]);
 };
 

@@ -1,4 +1,4 @@
-describe('Shopify#storefrontAccessToken', () => {
+describe('Redhio#storefrontAccessToken', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#storefrontAccessToken', () => {
   const fixtures = require('./fixtures/storefront-access-token');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#storefrontAccessToken', () => {
       .post('/admin/storefront_access_tokens.json', input)
       .reply(200, output);
 
-    return shopify.storefrontAccessToken.create(input.storefront_access_token)
+    return redhio.storefrontAccessToken.create(input.storefront_access_token)
       .then(data => {
         expect(data).to.deep.equal(output.storefront_access_token);
       });
@@ -30,7 +30,7 @@ describe('Shopify#storefrontAccessToken', () => {
       .delete('/admin/storefront_access_tokens/755357713.json')
       .reply(200);
 
-    return shopify.storefrontAccessToken.delete(755357713)
+    return redhio.storefrontAccessToken.delete(755357713)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -41,7 +41,7 @@ describe('Shopify#storefrontAccessToken', () => {
       .get('/admin/storefront_access_tokens.json')
       .reply(200, output);
 
-    return shopify.storefrontAccessToken.list()
+    return redhio.storefrontAccessToken.list()
       .then(data => {
         expect(data).to.deep.equal(output.storefront_access_tokens);
       });

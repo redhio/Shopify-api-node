@@ -1,4 +1,4 @@
-describe('Shopify#asset', () => {
+describe('Redhio#asset', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -7,7 +7,7 @@ describe('Shopify#asset', () => {
   const fixtures = require('./fixtures/asset');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#asset', () => {
       .get('/admin/themes/828155753/assets.json')
       .reply(200, output);
 
-    return shopify.asset.list(828155753)
+    return redhio.asset.list(828155753)
       .then(data => expect(data).to.deep.equal(output.assets));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#asset', () => {
       .get('/admin/themes/828155753/assets.json?foo=bar')
       .reply(200, output);
 
-    return shopify.asset.list(828155753, { foo: 'bar' })
+    return redhio.asset.list(828155753, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.assets));
   });
 
@@ -45,7 +45,7 @@ describe('Shopify#asset', () => {
       .get('/admin/themes/828155753/assets.json?' + qs.stringify(query))
       .reply(200, output);
 
-    return shopify.asset.get(828155753, query)
+    return redhio.asset.get(828155753, query)
       .then(data => expect(data).to.deep.equal(output.asset));
   });
 
@@ -57,7 +57,7 @@ describe('Shopify#asset', () => {
       .put('/admin/themes/828155753/assets.json', input)
       .reply(200, output);
 
-    return shopify.asset.update(828155753, input.asset)
+    return redhio.asset.update(828155753, input.asset)
       .then(data => expect(data).to.deep.equal(output.asset));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#asset', () => {
       .put('/admin/themes/828155753/assets.json', input)
       .reply(200, output);
 
-    return shopify.asset.create(828155753, input.asset)
+    return redhio.asset.create(828155753, input.asset)
       .then(data => expect(data).to.deep.equal(output.asset));
   });
 
@@ -82,7 +82,7 @@ describe('Shopify#asset', () => {
       .delete('/admin/themes/828155753/assets.json?' + qs.stringify(query))
       .reply(200, {});
 
-    return shopify.asset.delete(828155753, query)
+    return redhio.asset.delete(828155753, query)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

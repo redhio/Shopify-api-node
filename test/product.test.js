@@ -1,4 +1,4 @@
-describe('Shopify#product', () => {
+describe('Redhio#product', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#product', () => {
   const fixtures = require('./fixtures/product');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#product', () => {
       .get('/admin/products.json')
       .reply(200, output);
 
-    return shopify.product.list()
+    return redhio.product.list()
       .then(data => expect(data).to.deep.equal(output.products));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#product', () => {
       .get('/admin/products.json?published_status=any')
       .reply(200, output);
 
-    return shopify.product.list({ published_status: 'any' })
+    return redhio.product.list({ published_status: 'any' })
       .then(data => expect(data).to.deep.equal(output.products));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#product', () => {
       .get('/admin/products/count.json')
       .reply(200, { count: 2 });
 
-    return shopify.product.count()
+    return redhio.product.count()
       .then(data => expect(data).to.equal(2));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#product', () => {
       .get('/admin/products/count.json?published_status=any')
       .reply(200, { count: 2 });
 
-    return shopify.product.count({ published_status: 'any' })
+    return redhio.product.count({ published_status: 'any' })
       .then(data => expect(data).to.equal(2));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#product', () => {
       .get('/admin/products/632910392.json')
       .reply(200, output);
 
-    return shopify.product.get(632910392)
+    return redhio.product.get(632910392)
       .then(data => expect(data).to.deep.equal(output.product));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#product', () => {
       .get('/admin/products/632910392.json?foo=bar')
       .reply(200, output);
 
-    return shopify.product.get(632910392, { foo: 'bar' })
+    return redhio.product.get(632910392, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.product));
   });
 
@@ -81,7 +81,7 @@ describe('Shopify#product', () => {
       .post('/admin/products.json', input)
       .reply(201, output);
 
-    return shopify.product.create(input.product)
+    return redhio.product.create(input.product)
       .then(data => expect(data).to.deep.equal(output.product));
   });
 
@@ -93,7 +93,7 @@ describe('Shopify#product', () => {
       .put('/admin/products/632910392.json', input)
       .reply(200, output);
 
-    return shopify.product.update(632910392, input.product)
+    return redhio.product.update(632910392, input.product)
       .then(data => expect(data).to.deep.equal(output.product));
   });
 
@@ -102,7 +102,7 @@ describe('Shopify#product', () => {
       .delete('/admin/products/632910392.json')
       .reply(200, {});
 
-    return shopify.product.delete(632910392)
+    return redhio.product.delete(632910392)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

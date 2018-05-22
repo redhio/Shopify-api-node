@@ -1,4 +1,4 @@
-describe('Shopify#collectionListing', () => {
+describe('Redhio#collectionListing', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#collectionListing', () => {
   const fixtures = require('./fixtures/collection-listing');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#collectionListing', () => {
       .get('/admin/collection_listings.json')
       .reply(200, output);
 
-    return shopify.collectionListing.list()
+    return redhio.collectionListing.list()
       .then(data => expect(data).to.deep.equal(output.collection_listings));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#collectionListing', () => {
       .get('/admin/collection_listings.json?page=1')
       .reply(200, output);
 
-    return shopify.collectionListing.list({ page: 1 })
+    return redhio.collectionListing.list({ page: 1 })
       .then(data => expect(data).to.deep.equal(output.collection_listings));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#collectionListing', () => {
       .get('/admin/collection_listings/841564295/product_ids.json')
       .reply(200, output);
 
-    return shopify.collectionListing.productIds(841564295)
+    return redhio.collectionListing.productIds(841564295)
       .then(data => expect(data).to.deep.equal(output.product_ids));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#collectionListing', () => {
       .get('/admin/collection_listings/482865238.json')
       .reply(200, output);
 
-    return shopify.collectionListing.get(482865238)
+    return redhio.collectionListing.get(482865238)
       .then(data => expect(data).to.deep.equal(output.collection_listing));
   });
 });

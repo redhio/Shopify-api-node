@@ -1,4 +1,4 @@
-describe('Shopify#user', () => {
+describe('Redhio#user', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#user', () => {
   const fixtures = require('./fixtures/user');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#user', () => {
       .get('/admin/users.json')
       .reply(200, output);
 
-    return shopify.user.list()
+    return redhio.user.list()
       .then(data => expect(data).to.deep.equal(output.users));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#user', () => {
       .get('/admin/users/799407056.json')
       .reply(200, output);
 
-    return shopify.user.get(799407056)
+    return redhio.user.get(799407056)
       .then(data => expect(data).to.deep.equal(output.user));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#user', () => {
       .get('/admin/users/current.json')
       .reply(200, output);
 
-    return shopify.user.current()
+    return redhio.user.current()
       .then(data => expect(data).to.deep.equal(output.user));
   });
 });

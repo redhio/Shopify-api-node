@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Report instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Report(shopify) {
-  this.shopify = shopify;
+function Report(redhio) {
+  this.redhio = redhio;
 
   this.name = 'reports';
   this.key = 'report';

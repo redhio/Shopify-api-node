@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a CarrierService instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function CarrierService(shopify) {
-  this.shopify = shopify;
+function CarrierService(redhio) {
+  this.redhio = redhio;
 
   this.name = 'carrier_services';
   this.key = 'carrier_service';

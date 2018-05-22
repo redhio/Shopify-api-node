@@ -1,4 +1,4 @@
-describe('Shopify#customerAddress', () => {
+describe('Redhio#customerAddress', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -7,7 +7,7 @@ describe('Shopify#customerAddress', () => {
   const fixtures = require('./fixtures/customer-address');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#customerAddress', () => {
       .get('/admin/customers/207119551/addresses.json')
       .reply(200, output);
 
-    return shopify.customerAddress.list(207119551)
+    return redhio.customerAddress.list(207119551)
       .then(data => expect(data).to.deep.equal(output.addresses));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#customerAddress', () => {
       .get('/admin/customers/207119551/addresses.json?page=1')
       .reply(200, output);
 
-    return shopify.customerAddress.list(207119551, { page: 1 })
+    return redhio.customerAddress.list(207119551, { page: 1 })
       .then(data => expect(data).to.deep.equal(output.addresses));
   });
 
@@ -41,7 +41,7 @@ describe('Shopify#customerAddress', () => {
       .get('/admin/customers/207119551/addresses/207119551.json')
       .reply(200, output);
 
-    return shopify.customerAddress.get(207119551, 207119551)
+    return redhio.customerAddress.get(207119551, 207119551)
       .then(data => expect(data).to.deep.equal(output.customer_address));
   });
 
@@ -53,7 +53,7 @@ describe('Shopify#customerAddress', () => {
       .post('/admin/customers/207119551/addresses.json', input)
       .reply(201, output);
 
-    return shopify.customerAddress.create(207119551, input.address)
+    return redhio.customerAddress.create(207119551, input.address)
       .then(data => expect(data).to.deep.equal(output.customer_address));
   });
 
@@ -65,7 +65,7 @@ describe('Shopify#customerAddress', () => {
       .put('/admin/customers/207119551/addresses/207119551.json', input)
       .reply(200, output);
 
-    return shopify.customerAddress.update(207119551, 207119551, input.address)
+    return redhio.customerAddress.update(207119551, 207119551, input.address)
       .then(data => expect(data).to.deep.equal(output.customer_address));
   });
 
@@ -74,7 +74,7 @@ describe('Shopify#customerAddress', () => {
       .delete('/admin/customers/207119551/addresses/207119551.json')
       .reply(200, {});
 
-    return shopify.customerAddress.delete(207119551, 207119551)
+    return redhio.customerAddress.delete(207119551, 207119551)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -90,7 +90,7 @@ describe('Shopify#customerAddress', () => {
       }))
       .reply(200, {});
 
-    return shopify.customerAddress.set(207119551, query)
+    return redhio.customerAddress.set(207119551, query)
       .then(data => expect(data).to.deep.equal({}));
   });
 
@@ -101,7 +101,7 @@ describe('Shopify#customerAddress', () => {
       .put('/admin/customers/207119551/addresses/1053317297/default.json')
       .reply(200, output);
 
-    return shopify.customerAddress.default(207119551, 1053317297)
+    return redhio.customerAddress.default(207119551, 1053317297)
       .then(data => expect(data).to.deep.equal(output.customer_address));
   });
 });

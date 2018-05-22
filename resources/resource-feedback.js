@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a ResourceFeedback instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function ResourceFeedback(shopify) {
-  this.shopify = shopify;
+function ResourceFeedback(redhio) {
+  this.redhio = redhio;
 
   this.name = 'resource_feedback';
   this.key = 'resource_feedback';

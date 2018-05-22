@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a DraftOrder instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function DraftOrder(shopify) {
-  this.shopify = shopify;
+function DraftOrder(redhio) {
+  this.redhio = redhio;
 
   this.name = 'draft_orders';
   this.key = 'draft_order';
@@ -30,7 +30,7 @@ assign(DraftOrder.prototype, base);
  */
 DraftOrder.prototype.complete = function complete(id, params) {
   const url = this.buildUrl(`${id}/complete`, params);
-  return this.shopify.request(url, 'PUT', this.key);
+  return this.redhio.request(url, 'PUT', this.key);
 };
 
 /**
@@ -43,7 +43,7 @@ DraftOrder.prototype.complete = function complete(id, params) {
  */
 DraftOrder.prototype.sendInvoice = function sendInvoice(id, params) {
   const url = this.buildUrl(`${id}/send_invoice`);
-  return this.shopify.request(url, 'POST', 'draft_order_invoice', params);
+  return this.redhio.request(url, 'POST', 'draft_order_invoice', params);
 };
 
 module.exports = DraftOrder;

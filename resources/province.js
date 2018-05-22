@@ -8,12 +8,12 @@ const baseChild = require('../mixins/base-child');
 /**
  * Creates a Province instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Province(shopify) {
-  this.shopify = shopify;
+function Province(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'countries';
   this.name = 'provinces';

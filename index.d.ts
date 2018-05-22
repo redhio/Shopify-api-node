@@ -23,10 +23,10 @@
 export = Redhio;
 
 /*~ Write your module's methods and properties in this class */
-type onCallLimitsFn = (limits: Shopify.ICallLimits) => void;
+type onCallLimitsFn = (limits: Redhio.ICallLimits) => void;
 
 declare class Redhio {
-    constructor(config: Redhio.IPublicRedhioConfig | Shopify.IPrivateRedhioConfig);
+    constructor(config: Redhio.IPublicRedhioConfig | Redhio.IPrivateRedhioConfig);
     callLimits: Redhio.ICallLimits;
     accessScope: {
         list: () => Promise<Redhio.IAccessScope[]>;
@@ -72,7 +72,7 @@ declare class Redhio {
         update: (id: number, params: any) => Promise<Redhio.IBlog>;
     };
     carrierService: {
-        create: (params: Shopify.ICreateCarrierService) => Promise<Redhio.ICarrierService>;
+        create: (params: Redhio.ICreateCarrierService) => Promise<Redhio.ICarrierService>;
         delete: (id: number) => Promise<void>;
         get: (id: number) => Promise<Redhio.ICarrierService>;
         list: () => Promise<Redhio.ICarrierService[]>;
@@ -103,7 +103,7 @@ declare class Redhio {
         approve: (id: number) => Promise<Redhio.IComment>;
         count: (params?: any) => Promise<number>;
         create: (params: Redhio.ICreateComment) => Promise<Redhio.IComment>;
-        get: (id: number, params?: any) => Promise<Shopify.IComment>;
+        get: (id: number, params?: any) => Promise<Redhio.IComment>;
         list: (params?: any) => Promise<Redhio.IComment[]>;
         notSpam: (id: number) => Promise<Redhio.IComment>;
         remove: (id: number) => Promise<Redhio.IComment>;
@@ -123,141 +123,141 @@ declare class Redhio {
         count: (params?: any) => Promise<number>;
         create: (params: any) => Promise<Redhio.ICustomCollection>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.ICustomCollection>;
-        list: (params?: any) => Promise<Shopify.ICustomCollection[]>;
-        update: (id: number, params: any) => Promise<Shopify.ICustomCollection>;
+        get: (id: number, params?: any) => Promise<Redhio.ICustomCollection>;
+        list: (params?: any) => Promise<Redhio.ICustomCollection[]>;
+        update: (id: number, params: any) => Promise<Redhio.ICustomCollection>;
     };
     customer: {
         accountActivationUrl: (id: number) => Promise<any>;
         count: () => Promise<number>;
-        create: (params: any) => Promise<Shopify.ICustomer>;
+        create: (params: any) => Promise<Redhio.ICustomer>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.ICustomer>;
-        list: (params: any) => Promise<Shopify.ICustomer[]>;
+        get: (id: number, params?: any) => Promise<Redhio.ICustomer>;
+        list: (params: any) => Promise<Redhio.ICustomer[]>;
         search: (params: any) => Promise<any>;
-        update: (id: number, params: any) => Promise<Shopify.ICustomer>;
+        update: (id: number, params: any) => Promise<Redhio.ICustomer>;
     };
     customerAddress: {
-        create: (customerId: number, params: any) => Promise<Shopify.ICustomerAddress>;
-        default: (customerId: number, id: number) => Promise<Shopify.ICustomerAddress>;
+        create: (customerId: number, params: any) => Promise<Redhio.ICustomerAddress>;
+        default: (customerId: number, id: number) => Promise<Redhio.ICustomerAddress>;
         delete: (customerId: number, id: number) => Promise<void>;
-        get: (customerId: number, id: number) => Promise<Shopify.ICustomerAddress>;
-        list: (customerId: number, params?: any) => Promise<Shopify.ICustomerAddress[]>;
+        get: (customerId: number, id: number) => Promise<Redhio.ICustomerAddress>;
+        list: (customerId: number, params?: any) => Promise<Redhio.ICustomerAddress[]>;
         set: (customerId: number, params: any) => Promise<any>;
-        update: (customerId: number, id: number, params: any) => Promise<Shopify.ICustomerAddress>;
+        update: (customerId: number, id: number, params: any) => Promise<Redhio.ICustomerAddress>;
     };
     customerSavedSearch: {
         count: (params?: any) => Promise<number>;
-        create: (params: any) => Promise<Shopify.ICustomerSavedSearch>;
+        create: (params: any) => Promise<Redhio.ICustomerSavedSearch>;
         customers: (id: number, params?: any) => Promise<any>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.ICustomerSavedSearch>;
-        list: (params?: any) => Promise<Shopify.ICustomerSavedSearch[]>;
-        update: (id: number, params: any) => Promise<Shopify.ICustomerSavedSearch>;
+        get: (id: number, params?: any) => Promise<Redhio.ICustomerSavedSearch>;
+        list: (params?: any) => Promise<Redhio.ICustomerSavedSearch[]>;
+        update: (id: number, params: any) => Promise<Redhio.ICustomerSavedSearch>;
     };
     discountCode: {
-        create: (params: any) => Promise<Shopify.IDiscountCode>;
+        create: (params: any) => Promise<Redhio.IDiscountCode>;
         delete: (id: number) => Promise<void>;
-        disable: (id: number) => Promise<Shopify.IDiscountCode>;
-        enable: (id: number) => Promise<Shopify.IDiscountCode>;
-        get: (id: number) => Promise<Shopify.IDiscountCode>;
-        list: (params?: any) => Promise<Shopify.IDiscountCode[]>;
+        disable: (id: number) => Promise<Redhio.IDiscountCode>;
+        enable: (id: number) => Promise<Redhio.IDiscountCode>;
+        get: (id: number) => Promise<Redhio.IDiscountCode>;
+        list: (params?: any) => Promise<Redhio.IDiscountCode[]>;
     };
     draftOrder: {
-        complete: (id: number, params?: any) => Promise<Shopify.IDraftOrder>;
+        complete: (id: number, params?: any) => Promise<Redhio.IDraftOrder>;
         count: () => Promise<number>;
-        create: (params: any) => Promise<Shopify.IDraftOrder>;
+        create: (params: any) => Promise<Redhio.IDraftOrder>;
         delete: (id: number) => Promise<void>;
-        get: (id: number) => Promise<Shopify.IDraftOrder>;
-        list: (params?: any) => Promise<Shopify.IDraftOrder[]>;
+        get: (id: number) => Promise<Redhio.IDraftOrder>;
+        list: (params?: any) => Promise<Redhio.IDraftOrder[]>;
         sendInvoice: (id: number, params?: any) => Promise<any>;
-        update: (id: number, params?: any) => Promise<Shopify.IDraftOrder>;
+        update: (id: number, params?: any) => Promise<Redhio.IDraftOrder>;
     };
     event: {
         count: (params?: any) => Promise<number>;
-        get: (id: number, params?: any) => Promise<Shopify.IEvent>;
-        list: (params?: any) => Promise<Shopify.IEvent[]>;
+        get: (id: number, params?: any) => Promise<Redhio.IEvent>;
+        list: (params?: any) => Promise<Redhio.IEvent[]>;
     };
     fulfillment: {
-        cancel: (orderId: number, id: number) => Promise<Shopify.IFulfillment>;
-        complete: (orderId: number, id: number) => Promise<Shopify.IFulfillment>;
+        cancel: (orderId: number, id: number) => Promise<Redhio.IFulfillment>;
+        complete: (orderId: number, id: number) => Promise<Redhio.IFulfillment>;
         count: (orderId: number, params?: any) => Promise<number>;
-        create: (orderId: number, params: any) => Promise<Shopify.IFulfillment>;
-        get: (orderId: number, id: number, params?: any) => Promise<Shopify.IFulfillment>;
-        list: (orderId: number, params?: any) => Promise<Shopify.IFulfillment[]>;
-        open: (orderId: number, id: number) => Promise<Shopify.IFulfillment>;
-        update: (orderId: number, id: number, params: any) => Promise<Shopify.IFulfillment>;
+        create: (orderId: number, params: any) => Promise<Redhio.IFulfillment>;
+        get: (orderId: number, id: number, params?: any) => Promise<Redhio.IFulfillment>;
+        list: (orderId: number, params?: any) => Promise<Redhio.IFulfillment[]>;
+        open: (orderId: number, id: number) => Promise<Redhio.IFulfillment>;
+        update: (orderId: number, id: number, params: any) => Promise<Redhio.IFulfillment>;
     };
     fulfillmentEvent: {
-        create: (orderId: number, fulfillmentId: number, params: any) => Promise<Shopify.IFulfillmentEvent>;
+        create: (orderId: number, fulfillmentId: number, params: any) => Promise<Redhio.IFulfillmentEvent>;
         delete: (orderId: number, fulfillmentId: number, id: number) => Promise<void>;
-        get: (orderId: number, fulfillmentId: number, id: number) => Promise<Shopify.IFulfillmentEvent>;
-        list: (orderId: number, fulfillmentId: number, params?: any) => Promise<Shopify.IFulfillmentEvent[]>;
-        update: (orderId: number, fulfillmentId: number, id: number, params: any) => Promise<Shopify.IFulfillmentEvent>;
+        get: (orderId: number, fulfillmentId: number, id: number) => Promise<Redhio.IFulfillmentEvent>;
+        list: (orderId: number, fulfillmentId: number, params?: any) => Promise<Redhio.IFulfillmentEvent[]>;
+        update: (orderId: number, fulfillmentId: number, id: number, params: any) => Promise<Redhio.IFulfillmentEvent>;
     };
     fulfillmentService: {
-        create: (params: any) => Promise<Shopify.IFulfillmentService>;
+        create: (params: any) => Promise<Redhio.IFulfillmentService>;
         delete: (id: number) => Promise<void>;
-        get: (id: number) => Promise<Shopify.IFulfillmentService>;
-        list: (params?: any) => Promise<Shopify.IFulfillmentService[]>;
-        update: (id: number, params: any) => Promise<Shopify.IFulfillmentService>;
+        get: (id: number) => Promise<Redhio.IFulfillmentService>;
+        list: (params?: any) => Promise<Redhio.IFulfillmentService[]>;
+        update: (id: number, params: any) => Promise<Redhio.IFulfillmentService>;
     };
     giftCard: {
         count: (params?: any) => Promise<number>;
-        create: (params: any) => Promise<Shopify.IGiftCard>;
+        create: (params: any) => Promise<Redhio.IGiftCard>;
         disable: (id: number) => Promise<any>;
-        get: (id: number) => Promise<Shopify.IGiftCard>;
-        list: (params?: any) => Promise<Shopify.IGiftCard[]>;
+        get: (id: number) => Promise<Redhio.IGiftCard>;
+        list: (params?: any) => Promise<Redhio.IGiftCard[]>;
         search: (params: any) => Promise<any>;
-        update: (id: number, params: any) => Promise<Shopify.IGiftCard>;
+        update: (id: number, params: any) => Promise<Redhio.IGiftCard>;
     };
     location: {
-        get: (id: number) => Promise<Shopify.ILocation>;
-        list: () => Promise<Shopify.ILocation[]>;
+        get: (id: number) => Promise<Redhio.ILocation>;
+        list: () => Promise<Redhio.ILocation[]>;
     };
     marketingEvent: {
         count: (params?: any) => Promise<number>;
-        create: (params: any) => Promise<Shopify.IMarketingEvent>;
+        create: (params: any) => Promise<Redhio.IMarketingEvent>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IMarketingEvent>;
-        list: (params?: any) => Promise<Shopify.IMarketingEvent[]>;
-        update: (id: number, params: any) => Promise<Shopify.IMarketingEvent>;
+        get: (id: number, params?: any) => Promise<Redhio.IMarketingEvent>;
+        list: (params?: any) => Promise<Redhio.IMarketingEvent[]>;
+        update: (id: number, params: any) => Promise<Redhio.IMarketingEvent>;
         engagements: (id: number, params: any) => Promise<any>;
     };
     metafield: {
         count: (params?: any) => Promise<number>;
-        create: (params: any) => Promise<Shopify.IMetafield>;
+        create: (params: any) => Promise<Redhio.IMetafield>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IMetafield>;
-        list: (params?: any) => Promise<Shopify.IMetafield[]>;
-        update: (id: number, params: any) => Promise<Shopify.IMetafield>;
+        get: (id: number, params?: any) => Promise<Redhio.IMetafield>;
+        list: (params?: any) => Promise<Redhio.IMetafield[]>;
+        update: (id: number, params: any) => Promise<Redhio.IMetafield>;
     };
-    on: (event: "callLimits", callback: onCallLimitsFn) => Shopify;
+    on: (event: "callLimits", callback: onCallLimitsFn) => Redhio;
     order: {
-        cancel: (id: number, params?: any) => Promise<Shopify.IOrder>;
-        close: (id: number) => Promise<Shopify.IOrder>;
+        cancel: (id: number, params?: any) => Promise<Redhio.IOrder>;
+        close: (id: number) => Promise<Redhio.IOrder>;
         count: (params?: any) => Promise<number>;
-        create: (params: any) => Promise<Shopify.IOrder>;
+        create: (params: any) => Promise<Redhio.IOrder>;
         delete: (id: number) => Promise<any>;
-        get: (id: number, params?: any) => Promise<Shopify.IOrder>;
-        list: (params?: any) => Promise<Shopify.IOrder[]>;
-        open: (id: number) => Promise<Shopify.IOrder>;
-        update: (id: number, params: any) => Promise<Shopify.IOrder>;
+        get: (id: number, params?: any) => Promise<Redhio.IOrder>;
+        list: (params?: any) => Promise<Redhio.IOrder[]>;
+        open: (id: number) => Promise<Redhio.IOrder>;
+        update: (id: number, params: any) => Promise<Redhio.IOrder>;
     };
     orderRisk: {
-        create: (orderId: number, params: any) => Promise<Shopify.IOrderRisk>;
+        create: (orderId: number, params: any) => Promise<Redhio.IOrderRisk>;
         delete: (orderId: number, id: number) => Promise<void>;
-        get: (orderId: number, id: number) => Promise<Shopify.IOrderRisk>;
-        list: (orderId: number) => Promise<Shopify.IOrderRisk[]>;
-        update: (orderId: number, id: number, params: any) => Promise<Shopify.IOrderRisk>;
+        get: (orderId: number, id: number) => Promise<Redhio.IOrderRisk>;
+        list: (orderId: number) => Promise<Redhio.IOrderRisk[]>;
+        update: (orderId: number, id: number, params: any) => Promise<Redhio.IOrderRisk>;
     };
     page: {
         count: (params?: any) => Promise<number>;
-        create: (params: any) => Promise<Shopify.IPage>;
+        create: (params: any) => Promise<Redhio.IPage>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IPage>;
-        list: (params?: any) => Promise<Shopify.IPage[]>;
-        update: (id: number, params: any) => Promise<Shopify.IPage>;
+        get: (id: number, params?: any) => Promise<Redhio.IPage>;
+        list: (params?: any) => Promise<Redhio.IPage[]>;
+        update: (id: number, params: any) => Promise<Redhio.IPage>;
     };
     payment: {
         count: (checkoutToken: any) => Promise<number>;
@@ -266,159 +266,159 @@ declare class Redhio {
         list: (checkoutToken?: any) => Promise<any>;
     };
     policy: {
-        list: (params?: any) => Promise<Shopify.IPolicy[]>;
+        list: (params?: any) => Promise<Redhio.IPolicy[]>;
     };
     priceRule: {
-        create: (params: any) => Promise<Shopify.IPriceRule>;
+        create: (params: any) => Promise<Redhio.IPriceRule>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IPriceRule>;
-        list: (params?: any) => Promise<Shopify.IPriceRule[]>;
-        update: (id: number, params: any) => Promise<Shopify.IPriceRule>;
+        get: (id: number, params?: any) => Promise<Redhio.IPriceRule>;
+        list: (params?: any) => Promise<Redhio.IPriceRule[]>;
+        update: (id: number, params: any) => Promise<Redhio.IPriceRule>;
     };
     product: {
         count: (params?: any) => Promise<number>;
-        create: (params: any) => Promise<Shopify.IProduct>;
+        create: (params: any) => Promise<Redhio.IProduct>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IProduct>;
-        list: (params?: any) => Promise<Shopify.IProduct[]>;
-        update: (id: number, params: any) => Promise<Shopify.IProduct>;
+        get: (id: number, params?: any) => Promise<Redhio.IProduct>;
+        list: (params?: any) => Promise<Redhio.IProduct[]>;
+        update: (id: number, params: any) => Promise<Redhio.IProduct>;
     };
     productImage: {
         count: (productId: number, params?: any) => Promise<number>;
-        create: (productId: number, params: any) => Promise<Shopify.IProductImage>;
+        create: (productId: number, params: any) => Promise<Redhio.IProductImage>;
         delete: (productId: number, id: number) => Promise<void>;
-        get: (productId: number, id: number, params?: any) => Promise<Shopify.IProductImage>;
-        list: (productId: number, params?: any) => Promise<Shopify.IProductImage[]>;
-        update: (productId: number, id: number, params: any) => Promise<Shopify.IProductImage>;
+        get: (productId: number, id: number, params?: any) => Promise<Redhio.IProductImage>;
+        list: (productId: number, params?: any) => Promise<Redhio.IProductImage[]>;
+        update: (productId: number, id: number, params: any) => Promise<Redhio.IProductImage>;
     };
     productListing: {
         count: () => Promise<number>;
-        create: (productId: number, params: any) => Promise<Shopify.IProductListing>;
+        create: (productId: number, params: any) => Promise<Redhio.IProductListing>;
         delete: (productId: number) => Promise<void>;
-        get: (productId: number) => Promise<Shopify.IProductListing>;
-        list: (params?: any) => Promise<Shopify.IProductListing[]>;
+        get: (productId: number) => Promise<Redhio.IProductListing>;
+        list: (params?: any) => Promise<Redhio.IProductListing[]>;
         productIds: (params?: any) => Promise<any>;
     };
     productVariant: {
         count: (productId: number) => Promise<number>;
-        create: (productId: number, params: any) => Promise<Shopify.IProductVariant>;
+        create: (productId: number, params: any) => Promise<Redhio.IProductVariant>;
         delete: (productId: number, id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IProductVariant>;
-        list: (productId: number, params?: any) => Promise<Shopify.IProductVariant[]>;
-        update: (id: number, params: any) => Promise<Shopify.IProductVariant>;
+        get: (id: number, params?: any) => Promise<Redhio.IProductVariant>;
+        list: (productId: number, params?: any) => Promise<Redhio.IProductVariant[]>;
+        update: (id: number, params: any) => Promise<Redhio.IProductVariant>;
     };
     province: {
         count: (countryId: number, params?: any) => Promise<number>;
-        get: (countryId: number, id: number, params?: any) => Promise<Shopify.IProvince>;
-        list: (countryId: number, params?: any) => Promise<Shopify.IProvince[]>;
-        update: (countryId: number, id: number, params: any) => Promise<Shopify.IProvince>;
+        get: (countryId: number, id: number, params?: any) => Promise<Redhio.IProvince>;
+        list: (countryId: number, params?: any) => Promise<Redhio.IProvince[]>;
+        update: (countryId: number, id: number, params: any) => Promise<Redhio.IProvince>;
     };
     recurringApplicationCharge: {
-        activate: (id: number, params: any) => Promise<Shopify.IRecurringApplicationCharge>;
-        create: (params: Shopify.ICreateRecurringApplicationCharge) => Promise<Shopify.IRecurringApplicationCharge>;
+        activate: (id: number, params: any) => Promise<Redhio.IRecurringApplicationCharge>;
+        create: (params: Redhio.ICreateRecurringApplicationCharge) => Promise<Redhio.IRecurringApplicationCharge>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IRecurringApplicationCharge>;
-        list: (params?: any) => Promise<Shopify.IRecurringApplicationCharge[]>;
+        get: (id: number, params?: any) => Promise<Redhio.IRecurringApplicationCharge>;
+        list: (params?: any) => Promise<Redhio.IRecurringApplicationCharge[]>;
     };
     redirect: {
         count: (params?: any) => Promise<number>;
-        create: (params: Shopify.ICreateRedirect) => Promise<Shopify.IRedirect>;
+        create: (params: Redhio.ICreateRedirect) => Promise<Redhio.IRedirect>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IRedirect>;
-        list: (params?: any) => Promise<Shopify.IRedirect[]>;
-        update: (id: number, params: Shopify.IUpdateRedirect) => Promise<Shopify.IRedirect>;
+        get: (id: number, params?: any) => Promise<Redhio.IRedirect>;
+        list: (params?: any) => Promise<Redhio.IRedirect[]>;
+        update: (id: number, params: Redhio.IUpdateRedirect) => Promise<Redhio.IRedirect>;
     };
     refund: {
         calculate: (orderId: number, params: any) => Promise<any>;
-        create: (orderId: number, params: any) => Promise<Shopify.IRefund>;
-        get: (orderId: number, id: number, params?: any) => Promise<Shopify.IRefund>;
-        list: (orderId: number, params?: any) => Promise<Shopify.IRefund[]>;
+        create: (orderId: number, params: any) => Promise<Redhio.IRefund>;
+        get: (orderId: number, id: number, params?: any) => Promise<Redhio.IRefund>;
+        list: (orderId: number, params?: any) => Promise<Redhio.IRefund[]>;
     };
     report: {
-        create: (params: any) => Promise<Shopify.IReport>;
+        create: (params: any) => Promise<Redhio.IReport>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IReport>;
-        list: (params?: any) => Promise<Shopify.IReport[]>;
-        update: (id: number, params: any) => Promise<Shopify.IReport>;
+        get: (id: number, params?: any) => Promise<Redhio.IReport>;
+        list: (params?: any) => Promise<Redhio.IReport[]>;
+        update: (id: number, params: any) => Promise<Redhio.IReport>;
     };
     resourceFeedback: {
-        create: (params: any) => Promise<Shopify.IResourceFeedback>;
-        list: () => Promise<Shopify.IResourceFeedback[]>;
+        create: (params: any) => Promise<Redhio.IResourceFeedback>;
+        list: () => Promise<Redhio.IResourceFeedback[]>;
     }
     scriptTag: {
         count: (params?: any) => Promise<number>;
-        create: (params: Shopify.ICreateScriptTag) => Promise<Shopify.IScriptTag>;
+        create: (params: Redhio.ICreateScriptTag) => Promise<Redhio.IScriptTag>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IScriptTag>;
-        list: (params?: any) => Promise<Shopify.IScriptTag[]>;
-        update: (id: number, params: Shopify.IUpdateScriptTag) => Promise<Shopify.IScriptTag>;
+        get: (id: number, params?: any) => Promise<Redhio.IScriptTag>;
+        list: (params?: any) => Promise<Redhio.IScriptTag[]>;
+        update: (id: number, params: Redhio.IUpdateScriptTag) => Promise<Redhio.IScriptTag>;
     };
     shippingZone: {
-        list: (params?: any) => Promise<Shopify.IShippingZone[]>;
+        list: (params?: any) => Promise<Redhio.IShippingZone[]>;
     };
     shop: {
-        get: (params?: any) => Promise<Shopify.IShop>;
+        get: (params?: any) => Promise<Redhio.IShop>;
     };
     smartCollection: {
         count: (params?: any) => Promise<number>;
-        create: (params: any) => Promise<Shopify.ISmartCollection>;
+        create: (params: any) => Promise<Redhio.ISmartCollection>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.ISmartCollection>;
-        list: (params?: any) => Promise<Shopify.ISmartCollection[]>;
+        get: (id: number, params?: any) => Promise<Redhio.ISmartCollection>;
+        list: (params?: any) => Promise<Redhio.ISmartCollection[]>;
         order: (id: number, params: any) => Promise<void>;
-        update: (id: number, params: any) => Promise<Shopify.ISmartCollection>;
+        update: (id: number, params: any) => Promise<Redhio.ISmartCollection>;
     };
     theme: {
-        create: (params: any) => Promise<Shopify.ITheme>;
+        create: (params: any) => Promise<Redhio.ITheme>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params: any) => Promise<Shopify.ITheme>;
-        list: (params?: any) => Promise<Shopify.ITheme[]>;
-        update: (id: number, params: any) => Promise<Shopify.ITheme>;
+        get: (id: number, params: any) => Promise<Redhio.ITheme>;
+        list: (params?: any) => Promise<Redhio.ITheme[]>;
+        update: (id: number, params: any) => Promise<Redhio.ITheme>;
     };
     transaction: {
         count: (orderId: number) => Promise<number>;
-        create: (orderId: number, params: any) => Promise<Shopify.ITransaction>;
-        get: (orderId: number, id: number, params?: any) => Promise<Shopify.ITransaction>;
-        list: (orderId: number, params?: any) => Promise<Shopify.ITransaction[]>;
+        create: (orderId: number, params: any) => Promise<Redhio.ITransaction>;
+        get: (orderId: number, id: number, params?: any) => Promise<Redhio.ITransaction>;
+        list: (orderId: number, params?: any) => Promise<Redhio.ITransaction[]>;
     };
     usageCharge: {
-        create: (recurringApplicationChargeId: number, params: Shopify.ICreateUsageCharge) => Promise<Shopify.IUsageCharge>;
-        get: (recurringApplicationChargeId: number, id: number, params?: any) => Promise<Shopify.IUsageCharge>;
-        list: (recurringApplicationChargeId: number, params?: any) => Promise<Shopify.IUsageCharge[]>;
+        create: (recurringApplicationChargeId: number, params: Redhio.ICreateUsageCharge) => Promise<Redhio.IUsageCharge>;
+        get: (recurringApplicationChargeId: number, id: number, params?: any) => Promise<Redhio.IUsageCharge>;
+        list: (recurringApplicationChargeId: number, params?: any) => Promise<Redhio.IUsageCharge[]>;
     };
     user: {
-        current: () => Promise<Shopify.IUser>;
-        get: (id: number) => Promise<Shopify.IUser>;
-        list: () => Promise<Shopify.IUser[]>;
+        current: () => Promise<Redhio.IUser>;
+        get: (id: number) => Promise<Redhio.IUser>;
+        list: () => Promise<Redhio.IUser[]>;
     };
     webhook: {
         count: (params?: any) => Promise<number>;
-        create: (params: Shopify.ICreateWebhook) => Promise<Shopify.IWebhook>;
+        create: (params: Redhio.ICreateWebhook) => Promise<Redhio.IWebhook>;
         delete: (id: number) => Promise<void>;
-        get: (id: number, params?: any) => Promise<Shopify.IWebhook>;
-        list: (params?: any) => Promise<Shopify.IWebhook[]>;
-        update: (id: number, params: Shopify.IUpdateWebhook) => Promise<Shopify.IWebhook>;
+        get: (id: number, params?: any) => Promise<Redhio.IWebhook>;
+        list: (params?: any) => Promise<Redhio.IWebhook[]>;
+        update: (id: number, params: Redhio.IUpdateWebhook) => Promise<Redhio.IWebhook>;
     };
 }
 
 /*~ If you want to expose types from your module as well, you can
  *~ place them in this block.
  */
-declare namespace Shopify {
+declare namespace Redhio {
     export interface IAutoLimit {
         bucketSize: number;
         calls: number;
         interval: number;
     }
 
-    export interface IPublicShopifyConfig {
+    export interface IPublicRedhioConfig {
         accessToken: string;
         autoLimit?: boolean | IAutoLimit;
         shopName: string;
         timeout?: number;
     }
 
-    export interface IPrivateShopifyConfig {
+    export interface IPrivateRedhioConfig {
         apiKey: string;
         autoLimit?: boolean | IAutoLimit;
         password: string;
@@ -887,8 +887,8 @@ declare namespace Shopify {
         handle: string;
         image: IImage;
         id: number;
-        metafield?: IObjectMetafield; // From https://help.shopify.com/api/reference/customcollection but not visible in test API call
-        published?: string; // From https://help.shopify.com/api/reference/customcollection but not visible in test API call
+        metafield?: IObjectMetafield; // From https://help.redhio.com/api/reference/customcollection but not visible in test API call
+        published?: string; // From https://help.redhio.com/api/reference/customcollection but not visible in test API call
         published_at: string;
         published_scope: string;
         sort_order: CustomerCollectionSortOrder;
@@ -908,7 +908,7 @@ declare namespace Shopify {
         first_name: string;
         id: number;
         last_name: string;
-        metafield?: IObjectMetafield; // From https://help.shopify.com/api/reference/customer but not visible in test API call
+        metafield?: IObjectMetafield; // From https://help.redhio.com/api/reference/customer but not visible in test API call
         phone: string;
         multipass_identifier: null;
         last_order_id: number | null;
@@ -1618,7 +1618,7 @@ declare namespace Shopify {
         category: string;
         id: number;
         name: string;
-        shopify_ql: string;
+        redhio_ql: string;
         updated_at: string;
     }
 
@@ -1737,7 +1737,7 @@ declare namespace Shopify {
         money_in_emails_format: string;
         money_with_currency_format: string;
         money_with_currency_in_emails_format: string;
-        myshopify_domain: string;
+        myredhio_domain: string;
         name: string;
         password_enabled: boolean;
         phone: string | null;

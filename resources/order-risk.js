@@ -8,12 +8,12 @@ const baseChild = require('../mixins/base-child');
 /**
  * Creates an OrderRisk instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function OrderRisk(shopify) {
-  this.shopify = shopify;
+function OrderRisk(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'orders';
   this.name = 'risks';

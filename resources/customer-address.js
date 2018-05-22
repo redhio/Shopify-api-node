@@ -8,12 +8,12 @@ const baseChild = require('../mixins/base-child');
 /**
  * Creates an CustomerAddress instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function CustomerAddress(shopify) {
-  this.shopify = shopify;
+function CustomerAddress(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'customers';
   this.name = 'addresses';
@@ -36,7 +36,7 @@ assign(CustomerAddress.prototype, pick(baseChild, [
  */
 CustomerAddress.prototype.list = function list(customerId, params) {
   const url = this.buildUrl(customerId, undefined, params);
-  return this.shopify.request(url, 'GET', this.name);
+  return this.redhio.request(url, 'GET', this.name);
 };
 
 /**
@@ -49,7 +49,7 @@ CustomerAddress.prototype.list = function list(customerId, params) {
  */
 CustomerAddress.prototype.create = function create(customerId, params) {
   const url = this.buildUrl(customerId);
-  return this.shopify.request(url, 'POST', undefined, { address: params })
+  return this.redhio.request(url, 'POST', undefined, { address: params })
     .then(body => body[this.key]);
 };
 
@@ -64,7 +64,7 @@ CustomerAddress.prototype.create = function create(customerId, params) {
  */
 CustomerAddress.prototype.update = function update(customerId, id, params) {
   const url = this.buildUrl(customerId, id);
-  return this.shopify.request(url, 'PUT', undefined, { address: params })
+  return this.redhio.request(url, 'PUT', undefined, { address: params })
     .then(body => body[this.key]);
 };
 
@@ -78,7 +78,7 @@ CustomerAddress.prototype.update = function update(customerId, id, params) {
  */
 CustomerAddress.prototype.set = function set(customerId, params) {
   const url = this.buildUrl(customerId, 'set', params);
-  return this.shopify.request(url, 'PUT');
+  return this.redhio.request(url, 'PUT');
 };
 
 /**
@@ -91,7 +91,7 @@ CustomerAddress.prototype.set = function set(customerId, params) {
  */
 CustomerAddress.prototype.default = function defaultAddress(customerId, id) {
   const url = this.buildUrl(customerId, `${id}/default`);
-  return this.shopify.request(url, 'PUT', this.key);
+  return this.redhio.request(url, 'PUT', this.key);
 };
 
 module.exports = CustomerAddress;

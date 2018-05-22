@@ -5,12 +5,12 @@ const assign = require('lodash/assign');
 /**
  * Creates an AccessScope instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function AccessScope(shopify) {
-  this.shopify = shopify;
+function AccessScope(redhio) {
+  this.redhio = redhio;
 
   this.name = 'access_scopes';
 }
@@ -23,8 +23,8 @@ function AccessScope(shopify) {
  */
 AccessScope.prototype.list = function list() {
   const path = `/admin/oauth/${this.name}.json`;
-  const url = assign({ path }, this.shopify.baseUrl);
-  return this.shopify.request(url, 'GET', this.name);
+  const url = assign({ path }, this.redhio.baseUrl);
+  return this.redhio.request(url, 'GET', this.name);
 };
 
 module.exports = AccessScope;

@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a RecurringApplicationCharge instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function RecurringApplicationCharge(shopify) {
-  this.shopify = shopify;
+function RecurringApplicationCharge(redhio) {
+  this.redhio = redhio;
 
   this.name = 'recurring_application_charges';
   this.key = 'recurring_application_charge';
@@ -34,7 +34,7 @@ assign(RecurringApplicationCharge.prototype, omit(base, [
  */
 RecurringApplicationCharge.prototype.activate = function activate(id, params) {
   const url = this.buildUrl(`${id}/activate`);
-  return this.shopify.request(url, 'POST', undefined, {
+  return this.redhio.request(url, 'POST', undefined, {
     [this.key]: params
   });
 };

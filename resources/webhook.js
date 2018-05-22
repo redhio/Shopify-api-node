@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Webhook instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Webhook(shopify) {
-  this.shopify = shopify;
+function Webhook(redhio) {
+  this.redhio = redhio;
 
   this.name = 'webhooks';
   this.key = 'webhook';

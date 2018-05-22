@@ -1,4 +1,4 @@
-describe('Shopify#province', () => {
+describe('Redhio#province', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#province', () => {
   const fixtures = require('./fixtures/province');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#province', () => {
       .get('/admin/countries/879921427/provinces.json')
       .reply(200, output);
 
-    return shopify.province.list(879921427)
+    return redhio.province.list(879921427)
       .then(data => expect(data).to.deep.equal(output.provinces));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#province', () => {
       .get('/admin/countries/879921427/provinces.json?since_id=92264566')
       .reply(200, output);
 
-    return shopify.province.list(879921427, { since_id: 92264566 })
+    return redhio.province.list(879921427, { since_id: 92264566 })
       .then(data => expect(data).to.deep.equal(output.provinces));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#province', () => {
       .get('/admin/countries/879921427/provinces/count.json')
       .reply(200, { count: 13 });
 
-    return shopify.province.count(879921427)
+    return redhio.province.count(879921427)
       .then(data => expect(data).to.equal(13));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#province', () => {
       .get('/admin/countries/879921427/provinces/count.json?since_id=92264566')
       .reply(200, { count: 13 });
 
-    return shopify.province.count(879921427, { since_id: 92264566 })
+    return redhio.province.count(879921427, { since_id: 92264566 })
       .then(data => expect(data).to.equal(13));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#province', () => {
       .get('/admin/countries/879921427/provinces/224293623.json')
       .reply(200, output);
 
-    return shopify.province.get(879921427, 224293623)
+    return redhio.province.get(879921427, 224293623)
       .then(data => expect(data).to.deep.equal(output.province));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#province', () => {
       .get('/admin/countries/879921427/provinces/224293623.json?foo=bar')
       .reply(200, output);
 
-    return shopify.province.get(879921427, 224293623, { foo: 'bar' })
+    return redhio.province.get(879921427, 224293623, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.province));
   });
 
@@ -81,7 +81,7 @@ describe('Shopify#province', () => {
       .put('/admin/countries/879921427/provinces/224293623.json', input)
       .reply(200, output);
 
-    return shopify.province.update(879921427, 224293623, input.province)
+    return redhio.province.update(879921427, 224293623, input.province)
       .then(data => expect(data).to.deep.equal(output.province));
   });
 });

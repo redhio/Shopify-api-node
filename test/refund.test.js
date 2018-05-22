@@ -1,4 +1,4 @@
-describe('Shopify#refund', () => {
+describe('Redhio#refund', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#refund', () => {
   const fixtures = require('./fixtures/refund');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#refund', () => {
       .get('/admin/orders/450789469/refunds.json')
       .reply(200, output);
 
-    return shopify.refund.list(450789469)
+    return redhio.refund.list(450789469)
       .then(data => expect(data).to.deep.equal(output.refunds));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#refund', () => {
       .get('/admin/orders/450789469/refunds.json?foo=bar')
       .reply(200, output);
 
-    return shopify.refund.list(450789469, { foo: 'bar' })
+    return redhio.refund.list(450789469, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.refunds));
   });
 
@@ -40,7 +40,7 @@ describe('Shopify#refund', () => {
       .get('/admin/orders/450789469/refunds/509562969.json')
       .reply(200, output);
 
-    return shopify.refund.get(450789469, 509562969)
+    return redhio.refund.get(450789469, 509562969)
       .then(data => expect(data).to.deep.equal(output.refund));
   });
 
@@ -51,7 +51,7 @@ describe('Shopify#refund', () => {
       .get('/admin/orders/450789469/refunds/509562969.json?foo=bar')
       .reply(200, output);
 
-    return shopify.refund.get(450789469, 509562969, { foo: 'bar' })
+    return redhio.refund.get(450789469, 509562969, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.refund));
   });
 
@@ -63,7 +63,7 @@ describe('Shopify#refund', () => {
       .post('/admin/orders/450789469/refunds/calculate.json', input)
       .reply(200, output);
 
-    return shopify.refund.calculate(450789469, input.refund)
+    return redhio.refund.calculate(450789469, input.refund)
       .then(data => expect(data).to.deep.equal(output.refund));
   });
 
@@ -75,7 +75,7 @@ describe('Shopify#refund', () => {
       .post('/admin/orders/450789469/refunds.json', input)
       .reply(201, output);
 
-    return shopify.refund.create(450789469, input.refund)
+    return redhio.refund.create(450789469, input.refund)
       .then(data => expect(data).to.deep.equal(output.refund));
   });
 });

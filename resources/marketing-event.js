@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a MarketingEvent instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function MarketingEvent(shopify) {
-  this.shopify = shopify;
+function MarketingEvent(redhio) {
+  this.redhio = redhio;
 
   this.name = 'marketing_events';
   this.key = 'marketing_event';
@@ -30,7 +30,7 @@ assign(MarketingEvent.prototype, base);
  */
 MarketingEvent.prototype.engagements = function engagements(id, params) {
   const url = this.buildUrl(`${id}/engagements`);
-  return this.shopify.request(url, 'POST', 'engagements', params);
+  return this.redhio.request(url, 'POST', 'engagements', params);
 };
 
 module.exports = MarketingEvent;

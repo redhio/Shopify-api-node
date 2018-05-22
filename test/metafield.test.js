@@ -1,4 +1,4 @@
-describe('Shopify#metafield', () => {
+describe('Redhio#metafield', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#metafield', () => {
   const fixtures = require('./fixtures/metafield');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#metafield', () => {
       .get('/admin/metafields.json')
       .reply(200, output);
 
-    return shopify.metafield.list()
+    return redhio.metafield.list()
       .then(data => expect(data).to.deep.equal(output.metafields));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#metafield', () => {
       .get('/admin/metafields.json?since_id=721389481')
       .reply(200, output);
 
-    return shopify.metafield.list({ since_id: 721389481 })
+    return redhio.metafield.list({ since_id: 721389481 })
       .then(data => expect(data).to.deep.equal(output.metafields));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#metafield', () => {
       .get('/admin/metafields/count.json')
       .reply(200, { count: 1 });
 
-    return shopify.metafield.count()
+    return redhio.metafield.count()
       .then(data => expect(data).to.equal(1));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#metafield', () => {
       .get('/admin/metafields/count.json?foo=bar')
       .reply(200, { count: 1 });
 
-    return shopify.metafield.count({ foo: 'bar' })
+    return redhio.metafield.count({ foo: 'bar' })
       .then(data => expect(data).to.equal(1));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#metafield', () => {
       .get('/admin/metafields/721389482.json')
       .reply(200, output);
 
-    return shopify.metafield.get(721389482)
+    return redhio.metafield.get(721389482)
       .then(data => expect(data).to.deep.equal(output.metafield));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#metafield', () => {
       .get('/admin/metafields/721389482.json?foo=bar')
       .reply(200, output);
 
-    return shopify.metafield.get(721389482, { foo: 'bar' })
+    return redhio.metafield.get(721389482, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.metafield));
   });
 
@@ -81,7 +81,7 @@ describe('Shopify#metafield', () => {
       .post('/admin/metafields.json', input)
       .reply(201, output);
 
-    return shopify.metafield.create(input.metafield)
+    return redhio.metafield.create(input.metafield)
       .then(data => expect(data).to.deep.equal(output.metafield));
   });
 
@@ -93,7 +93,7 @@ describe('Shopify#metafield', () => {
       .put('/admin/metafields/721389482.json', input)
       .reply(200, output);
 
-    return shopify.metafield.update(721389482, input.metafield)
+    return redhio.metafield.update(721389482, input.metafield)
       .then(data => expect(data).to.deep.equal(output.metafield));
   });
 
@@ -102,7 +102,7 @@ describe('Shopify#metafield', () => {
       .delete('/admin/metafields/721389482.json')
       .reply(200, {});
 
-    return shopify.metafield.delete(721389482)
+    return redhio.metafield.delete(721389482)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

@@ -1,4 +1,4 @@
-describe('Shopify#inventoryItem', () => {
+describe('Redhio#inventoryItem', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -7,7 +7,7 @@ describe('Shopify#inventoryItem', () => {
   const fixtures = require('./fixtures/inventory-item');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -20,7 +20,7 @@ describe('Shopify#inventoryItem', () => {
       .get('/admin/inventory_items.json?' + qs.stringify(query))
       .reply(200, output);
 
-    return shopify.inventoryItem.list(query)
+    return redhio.inventoryItem.list(query)
       .then(data => expect(data).to.deep.equal(output.inventory_items));
   });
 
@@ -32,7 +32,7 @@ describe('Shopify#inventoryItem', () => {
       .put('/admin/inventory_items/808950810.json', input)
       .reply(200, output);
 
-    return shopify.inventoryItem.update(808950810, input.inventory_item)
+    return redhio.inventoryItem.update(808950810, input.inventory_item)
       .then(data => expect(data).to.deep.equal(output.inventory_item));
   });
 
@@ -43,7 +43,7 @@ describe('Shopify#inventoryItem', () => {
       .get('/admin/inventory_items/808950810.json')
       .reply(200, output);
 
-    return shopify.inventoryItem.get(808950810)
+    return redhio.inventoryItem.get(808950810)
       .then(data => expect(data).to.deep.equal(output.inventory_item));
   });
 });

@@ -1,4 +1,4 @@
-describe('Shopify#page', () => {
+describe('Redhio#page', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#page', () => {
   const fixtures = require('./fixtures/page');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#page', () => {
       .get('/admin/pages.json')
       .reply(200, output);
 
-    return shopify.page.list()
+    return redhio.page.list()
       .then(data => expect(data).to.deep.equal(output.pages));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#page', () => {
       .get('/admin/pages.json?since_id=108828308')
       .reply(200, output);
 
-    return shopify.page.list({ since_id: 108828308 })
+    return redhio.page.list({ since_id: 108828308 })
       .then(data => expect(data).to.deep.equal(output.pages));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#page', () => {
       .get('/admin/pages/count.json')
       .reply(200, { count: 4 });
 
-    return shopify.page.count()
+    return redhio.page.count()
       .then(data => expect(data).to.equal(4));
   });
 
@@ -47,7 +47,7 @@ describe('Shopify#page', () => {
       .get('/admin/pages/count.json?published_status=any')
       .reply(200, { count: 4 });
 
-    return shopify.page.count({ published_status: 'any' })
+    return redhio.page.count({ published_status: 'any' })
       .then(data => expect(data).to.equal(4));
   });
 
@@ -58,7 +58,7 @@ describe('Shopify#page', () => {
       .get('/admin/pages/131092082.json')
       .reply(200, output);
 
-    return shopify.page.get(131092082)
+    return redhio.page.get(131092082)
       .then(data => expect(data).to.deep.equal(output.page));
   });
 
@@ -69,7 +69,7 @@ describe('Shopify#page', () => {
       .get('/admin/pages/131092082.json?foo=bar')
       .reply(200, output);
 
-    return shopify.page.get(131092082, { foo: 'bar' })
+    return redhio.page.get(131092082, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.page));
   });
 
@@ -81,7 +81,7 @@ describe('Shopify#page', () => {
       .post('/admin/pages.json', input)
       .reply(201, output);
 
-    return shopify.page.create(input.page)
+    return redhio.page.create(input.page)
       .then(data => expect(data).to.deep.equal(output.page));
   });
 
@@ -93,7 +93,7 @@ describe('Shopify#page', () => {
       .put('/admin/pages/131092082.json', input)
       .reply(200, output);
 
-    return shopify.page.update(131092082, input.page)
+    return redhio.page.update(131092082, input.page)
       .then(data => expect(data).to.deep.equal(output.page));
   });
 
@@ -102,7 +102,7 @@ describe('Shopify#page', () => {
       .delete('/admin/pages/131092082.json')
       .reply(200, {});
 
-    return shopify.page.delete(131092082)
+    return redhio.page.delete(131092082)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

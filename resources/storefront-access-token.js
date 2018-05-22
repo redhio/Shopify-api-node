@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a StorefrontAccessToken instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function StorefrontAccessToken(shopify) {
-  this.shopify = shopify;
+function StorefrontAccessToken(redhio) {
+  this.redhio = redhio;
 
   this.name = 'storefront_access_tokens';
   this.key = 'storefront_access_token';

@@ -1,11 +1,11 @@
-describe('Shopify#apiPermission', () => {
+describe('Redhio#apiPermission', () => {
   'use strict';
 
   const expect = require('chai').expect;
 
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -15,7 +15,7 @@ describe('Shopify#apiPermission', () => {
       .delete('/admin/api_permissions/current.json')
       .reply(200);
 
-    return shopify.apiPermission.delete()
+    return redhio.apiPermission.delete()
       .then(data => expect(data).to.deep.equal({}));
   });
 });

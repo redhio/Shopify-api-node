@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Redirect instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Redirect(shopify) {
-  this.shopify = shopify;
+function Redirect(redhio) {
+  this.redhio = redhio;
 
   this.name = 'redirects';
   this.key = 'redirect';

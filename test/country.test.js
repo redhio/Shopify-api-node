@@ -1,4 +1,4 @@
-describe('Shopify#country', () => {
+describe('Redhio#country', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#country', () => {
   const fixtures = require('./fixtures/country');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#country', () => {
       .get('/admin/countries.json')
       .reply(200, output);
 
-    return shopify.country.list()
+    return redhio.country.list()
       .then(data => expect(data).to.deep.equal(output.countries));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#country', () => {
       .get('/admin/countries.json?since_id=359115487')
       .reply(200, output);
 
-    return shopify.country.list({ since_id: 359115487 })
+    return redhio.country.list({ since_id: 359115487 })
       .then(data => expect(data).to.deep.equal(output.countries));
   });
 
@@ -38,7 +38,7 @@ describe('Shopify#country', () => {
       .get('/admin/countries/count.json')
       .reply(200, { count: 3 });
 
-    return shopify.country.count()
+    return redhio.country.count()
       .then(data => expect(data).to.equal(3));
   });
 
@@ -49,7 +49,7 @@ describe('Shopify#country', () => {
       .get('/admin/countries/879921427.json')
       .reply(200, output);
 
-    return shopify.country.get(879921427)
+    return redhio.country.get(879921427)
       .then(data => expect(data).to.deep.equal(output.country));
   });
 
@@ -60,7 +60,7 @@ describe('Shopify#country', () => {
       .get('/admin/countries/879921427.json?foo=bar')
       .reply(200, output);
 
-    return shopify.country.get(879921427, { foo: 'bar' })
+    return redhio.country.get(879921427, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.country));
   });
 
@@ -72,7 +72,7 @@ describe('Shopify#country', () => {
       .post('/admin/countries.json', input)
       .reply(201, output);
 
-    return shopify.country.create(input.country)
+    return redhio.country.create(input.country)
       .then(data => expect(data).to.deep.equal(output.country));
   });
 
@@ -84,7 +84,7 @@ describe('Shopify#country', () => {
       .put('/admin/countries/879921427.json', input)
       .reply(200, output);
 
-    return shopify.country.update(879921427, input.country)
+    return redhio.country.update(879921427, input.country)
       .then(data => expect(data).to.deep.equal(output.country));
   });
 
@@ -93,7 +93,7 @@ describe('Shopify#country', () => {
       .delete('/admin/countries/879921427.json')
       .reply(200, {});
 
-    return shopify.country.delete(879921427)
+    return redhio.country.delete(879921427)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

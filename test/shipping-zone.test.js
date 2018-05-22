@@ -1,4 +1,4 @@
-describe('Shopify#shippingZone', () => {
+describe('Redhio#shippingZone', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#shippingZone', () => {
   const fixtures = require('./fixtures/shipping-zone');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#shippingZone', () => {
       .get('/admin/shipping_zones.json')
       .reply(200, output);
 
-    return shopify.shippingZone.list()
+    return redhio.shippingZone.list()
       .then(data => expect(data).to.deep.equal(output.shipping_zones));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#shippingZone', () => {
       .get('/admin/shipping_zones.json?foo=bar')
       .reply(200, output);
 
-    return shopify.shippingZone.list({ foo: 'bar' })
+    return redhio.shippingZone.list({ foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.shipping_zones));
   });
 });

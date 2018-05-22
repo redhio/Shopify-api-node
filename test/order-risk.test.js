@@ -1,4 +1,4 @@
-describe('Shopify#orderRisk', () => {
+describe('Redhio#orderRisk', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#orderRisk', () => {
   const fixtures = require('./fixtures/order-risk');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#orderRisk', () => {
       .post('/admin/orders/450789469/risks.json', input)
       .reply(201, output);
 
-    return shopify.orderRisk.create(450789469, input.risk)
+    return redhio.orderRisk.create(450789469, input.risk)
       .then(data => expect(data).to.deep.equal(output.risk));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#orderRisk', () => {
       .get('/admin/orders/450789469/risks.json')
       .reply(200, output);
 
-    return shopify.orderRisk.list(450789469)
+    return redhio.orderRisk.list(450789469)
       .then(data => expect(data).to.deep.equal(output.risks));
   });
 
@@ -41,7 +41,7 @@ describe('Shopify#orderRisk', () => {
       .get('/admin/orders/450789469/risks/284138680.json')
       .reply(200, output);
 
-    return shopify.orderRisk.get(450789469, 284138680)
+    return redhio.orderRisk.get(450789469, 284138680)
       .then(data => expect(data).to.deep.equal(output.risk));
   });
 
@@ -53,7 +53,7 @@ describe('Shopify#orderRisk', () => {
       .put('/admin/orders/450789469/risks/284138680.json', input)
       .reply(200, output);
 
-    return shopify.orderRisk.update(450789469, 284138680, input.risk)
+    return redhio.orderRisk.update(450789469, 284138680, input.risk)
       .then(data => expect(data).to.deep.equal(output.risk));
   });
 
@@ -62,7 +62,7 @@ describe('Shopify#orderRisk', () => {
       .delete('/admin/orders/450789469/risks/284138680.json')
       .reply(200, {});
 
-    return shopify.orderRisk.delete(450789469, 284138680)
+    return redhio.orderRisk.delete(450789469, 284138680)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

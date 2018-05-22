@@ -1,4 +1,4 @@
-describe('Shopify#applicationCredit', () => {
+describe('Redhio#applicationCredit', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#applicationCredit', () => {
   const fixtures = require('./fixtures/application-credit');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#applicationCredit', () => {
       .post('/admin/application_credits.json', input)
       .reply(201, output);
 
-    return shopify.applicationCredit.create(input.application_credit)
+    return redhio.applicationCredit.create(input.application_credit)
       .then(data => expect(data).to.deep.equal(output.application_credit));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#applicationCredit', () => {
       .get('/admin/application_credits/445365009.json')
       .reply(200, output);
 
-    return shopify.applicationCredit.get(445365009)
+    return redhio.applicationCredit.get(445365009)
       .then(data => expect(data).to.deep.equal(output.application_credit));
   });
 
@@ -41,7 +41,7 @@ describe('Shopify#applicationCredit', () => {
       .get('/admin/application_credits/445365009.json?foo=bar')
       .reply(200, output);
 
-    return shopify.applicationCredit.get(445365009, { foo: 'bar' })
+    return redhio.applicationCredit.get(445365009, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.application_credit));
   });
 
@@ -52,7 +52,7 @@ describe('Shopify#applicationCredit', () => {
       .get('/admin/application_credits.json')
       .reply(200, output);
 
-    return shopify.applicationCredit.list()
+    return redhio.applicationCredit.list()
       .then(data => expect(data).to.deep.equal(output.application_credits));
   });
 
@@ -63,7 +63,7 @@ describe('Shopify#applicationCredit', () => {
       .get('/admin/application_credits.json?foo=bar')
       .reply(200, output);
 
-    return shopify.applicationCredit.list({ foo: 'bar' })
+    return redhio.applicationCredit.list({ foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.application_credits));
   });
 });

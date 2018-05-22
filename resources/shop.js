@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Shop instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Shop(shopify) {
-  this.shopify = shopify;
+function Shop(redhio) {
+  this.redhio = redhio;
 
   this.name = this.key = 'shop';
 }
@@ -29,7 +29,7 @@ assign(Shop.prototype, pick(base, 'buildUrl'));
  */
 Shop.prototype.get = function get(params) {
   const url = this.buildUrl(undefined, params);
-  return this.shopify.request(url, 'GET', this.key);
+  return this.redhio.request(url, 'GET', this.key);
 };
 
 module.exports = Shop;

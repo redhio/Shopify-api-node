@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates an InventoryItem instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function InventoryItem(shopify) {
-  this.shopify = shopify;
+function InventoryItem(redhio) {
+  this.redhio = redhio;
 
   this.name = 'inventory_items';
   this.key = 'inventory_item';

@@ -9,12 +9,12 @@ const base = require('../mixins/base');
 /**
  * Creates a DiscountCode instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function DiscountCode(shopify) {
-  this.shopify = shopify;
+function DiscountCode(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'price_rules';
   this.name = 'discount_codes';
@@ -32,7 +32,7 @@ assign(DiscountCode.prototype, omit(baseChild, 'count'));
  */
 DiscountCode.prototype.lookup = function lookup(params) {
   const url = base.buildUrl.call(this, 'lookup', params);
-  return this.shopify.request(url, 'GET', this.key);
+  return this.redhio.request(url, 'GET', this.key);
 };
 
 module.exports = DiscountCode;

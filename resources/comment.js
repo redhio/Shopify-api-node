@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Comment instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Comment(shopify) {
-  this.shopify = shopify;
+function Comment(redhio) {
+  this.redhio = redhio;
 
   this.name = 'comments';
   this.key = 'comment';
@@ -30,7 +30,7 @@ assign(Comment.prototype, omit(base, ['delete']));
  */
 Comment.prototype.spam = function spam(id) {
   const url = this.buildUrl(`${id}/spam`);
-  return this.shopify.request(url, 'POST', undefined, {});
+  return this.redhio.request(url, 'POST', undefined, {});
 };
 
 /**
@@ -42,7 +42,7 @@ Comment.prototype.spam = function spam(id) {
  */
 Comment.prototype.notSpam = function notSpam(id) {
   const url = this.buildUrl(`${id}/not_spam`);
-  return this.shopify.request(url, 'POST', undefined, {});
+  return this.redhio.request(url, 'POST', undefined, {});
 };
 
 /**
@@ -54,7 +54,7 @@ Comment.prototype.notSpam = function notSpam(id) {
  */
 Comment.prototype.approve = function approve(id) {
   const url = this.buildUrl(`${id}/approve`);
-  return this.shopify.request(url, 'POST', undefined, {});
+  return this.redhio.request(url, 'POST', undefined, {});
 };
 
 /**
@@ -66,7 +66,7 @@ Comment.prototype.approve = function approve(id) {
  */
 Comment.prototype.remove = function remove(id) {
   const url = this.buildUrl(`${id}/remove`);
-  return this.shopify.request(url, 'POST', undefined, {});
+  return this.redhio.request(url, 'POST', undefined, {});
 };
 
 /**
@@ -78,7 +78,7 @@ Comment.prototype.remove = function remove(id) {
  */
 Comment.prototype.restore = function restore(id) {
   const url = this.buildUrl(`${id}/restore`);
-  return this.shopify.request(url, 'POST', undefined, {});
+  return this.redhio.request(url, 'POST', undefined, {});
 };
 
 module.exports = Comment;

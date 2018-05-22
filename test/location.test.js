@@ -1,4 +1,4 @@
-describe('Shopify#location', () => {
+describe('Redhio#location', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -6,7 +6,7 @@ describe('Shopify#location', () => {
   const fixtures = require('./fixtures/location');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -18,7 +18,7 @@ describe('Shopify#location', () => {
       .get('/admin/locations.json')
       .reply(200, output);
 
-    return shopify.location.list()
+    return redhio.location.list()
       .then(data => expect(data).to.deep.equal(output.locations));
   });
 
@@ -29,7 +29,7 @@ describe('Shopify#location', () => {
       .get('/admin/locations/487838322.json')
       .reply(200, output);
 
-    return shopify.location.get(487838322)
+    return redhio.location.get(487838322)
       .then(data => expect(data).to.deep.equal(output.location));
   });
 });

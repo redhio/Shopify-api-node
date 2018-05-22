@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Metafield instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Metafield(shopify) {
-  this.shopify = shopify;
+function Metafield(redhio) {
+  this.redhio = redhio;
 
   this.name = 'metafields';
   this.key = 'metafield';

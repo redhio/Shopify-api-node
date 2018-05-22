@@ -7,12 +7,12 @@ const base = require('../mixins/base');
 /**
  * Creates a SmartCollection instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function SmartCollection(shopify) {
-  this.shopify = shopify;
+function SmartCollection(redhio) {
+  this.redhio = redhio;
 
   this.name = 'smart_collections';
   this.key = 'smart_collection';
@@ -31,7 +31,7 @@ assign(SmartCollection.prototype, base);
  */
 SmartCollection.prototype.order = function order(id, params) {
   const url = this.buildUrl(`${id}/order`, params);
-  return this.shopify.request(url, 'PUT', undefined, {});
+  return this.redhio.request(url, 'PUT', undefined, {});
 };
 
 module.exports = SmartCollection;

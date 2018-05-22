@@ -9,12 +9,12 @@ const base = require('../mixins/base');
 /**
  * Creates an Article instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Article(shopify) {
-  this.shopify = shopify;
+function Article(redhio) {
+  this.redhio = redhio;
 
   this.parentName = 'blogs';
   this.name = 'articles';
@@ -32,7 +32,7 @@ assign(Article.prototype, baseChild);
 Article.prototype.authors = function authors() {
   const key = 'authors';
   const url = base.buildUrl.call(this, key);
-  return this.shopify.request(url, 'GET', key);
+  return this.redhio.request(url, 'GET', key);
 };
 
 /**
@@ -57,8 +57,8 @@ Article.prototype.tags = function tags(blogId, params) {
 
   if (params) path += '?' + qs.stringify(params, { arrayFormat: 'brackets' });
 
-  const url = assign({ path }, this.shopify.baseUrl);
-  return this.shopify.request(url, 'GET', 'tags');
+  const url = assign({ path }, this.redhio.baseUrl);
+  return this.redhio.request(url, 'GET', 'tags');
 };
 
 module.exports = Article;

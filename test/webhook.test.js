@@ -1,4 +1,4 @@
-describe('Shopify#webhook', () => {
+describe('Redhio#webhook', () => {
   'use strict';
 
   const expect = require('chai').expect;
@@ -7,7 +7,7 @@ describe('Shopify#webhook', () => {
   const fixtures = require('./fixtures/webhook');
   const common = require('./common');
 
-  const shopify = common.shopify;
+  const redhio = common.redhio;
   const scope = common.scope;
 
   afterEach(() => expect(scope.isDone()).to.be.true);
@@ -19,7 +19,7 @@ describe('Shopify#webhook', () => {
       .get('/admin/webhooks.json')
       .reply(200, output);
 
-    return shopify.webhook.list()
+    return redhio.webhook.list()
       .then(data => expect(data).to.deep.equal(output.webhooks));
   });
 
@@ -30,7 +30,7 @@ describe('Shopify#webhook', () => {
       .get('/admin/webhooks.json?page=1')
       .reply(200, output);
 
-    return shopify.webhook.list({ page: 1 })
+    return redhio.webhook.list({ page: 1 })
       .then(data => expect(data).to.deep.equal(output.webhooks));
   });
 
@@ -39,7 +39,7 @@ describe('Shopify#webhook', () => {
       .get('/admin/webhooks/count.json')
       .reply(200, { count: 2 });
 
-    return shopify.webhook.count()
+    return redhio.webhook.count()
       .then(data => expect(data).to.equal(2));
   });
 
@@ -50,7 +50,7 @@ describe('Shopify#webhook', () => {
       .get('/admin/webhooks/count.json?' + qs.stringify(query))
       .reply(200, { count: 1 });
 
-    return shopify.webhook.count(query)
+    return redhio.webhook.count(query)
       .then(data => expect(data).to.equal(1));
   });
 
@@ -61,7 +61,7 @@ describe('Shopify#webhook', () => {
       .get('/admin/webhooks/4759306.json')
       .reply(200, output);
 
-    return shopify.webhook.get(4759306)
+    return redhio.webhook.get(4759306)
       .then(data => expect(data).to.deep.equal(output.webhook));
   });
 
@@ -72,7 +72,7 @@ describe('Shopify#webhook', () => {
       .get('/admin/webhooks/4759306.json?foo=bar')
       .reply(200, output);
 
-    return shopify.webhook.get(4759306, { foo: 'bar' })
+    return redhio.webhook.get(4759306, { foo: 'bar' })
       .then(data => expect(data).to.deep.equal(output.webhook));
   });
 
@@ -84,7 +84,7 @@ describe('Shopify#webhook', () => {
       .post('/admin/webhooks.json', input)
       .reply(201, output);
 
-    return shopify.webhook.create(input.webhook)
+    return redhio.webhook.create(input.webhook)
       .then(data => expect(data).to.deep.equal(output.webhook));
   });
 
@@ -96,7 +96,7 @@ describe('Shopify#webhook', () => {
       .put('/admin/webhooks/4759306.json', input)
       .reply(200, output);
 
-    return shopify.webhook.update(4759306, input.webhook)
+    return redhio.webhook.update(4759306, input.webhook)
       .then(data => expect(data).to.deep.equal(output.webhook));
   });
 
@@ -105,7 +105,7 @@ describe('Shopify#webhook', () => {
       .delete('/admin/webhooks/4759306.json')
       .reply(200, {});
 
-    return shopify.webhook.delete(4759306)
+    return redhio.webhook.delete(4759306)
       .then(data => expect(data).to.deep.equal({}));
   });
 });

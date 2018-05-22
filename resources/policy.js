@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates a Policy instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Policy(shopify) {
-  this.shopify = shopify;
+function Policy(redhio) {
+  this.redhio = redhio;
 
   this.name = this.key = 'policies';
 }

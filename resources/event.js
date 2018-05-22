@@ -8,12 +8,12 @@ const base = require('../mixins/base');
 /**
  * Creates an Event instance.
  *
- * @param {Shopify} shopify Reference to the Shopify instance
+ * @param {Redhio} redhio Reference to the Redhio instance
  * @constructor
  * @public
  */
-function Event(shopify) {
-  this.shopify = shopify;
+function Event(redhio) {
+  this.redhio = redhio;
 
   this.name = 'events';
   this.key = 'event';
